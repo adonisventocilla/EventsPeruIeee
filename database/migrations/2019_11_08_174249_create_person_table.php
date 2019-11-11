@@ -18,7 +18,6 @@ class CreatePersonTable extends Migration
             $table->string('firstName', 45);
             $table->string('middleName', 45);
             $table->string('lastName', 100);
-            $table->string('email', 100)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('status');
             $table->unsignedBigInteger('institute_id')->index();
