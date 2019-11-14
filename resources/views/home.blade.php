@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    <a name="" id="" class="btn btn-primary" href="{{ route('events.index') }}" role="button">Crear nuevo evento</a>
                 </div>
             </div>
         </div>

@@ -20,4 +20,19 @@ Auth::routes();
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resources([
+        'events' => 'Event\EventController',
+        'committeeDetails' => 'Event\CommitteeDetailController',
+        'eventThemeDetails' => 'Event\EventThemDetailController',
+        'hostDetails' => 'Event\HostDetailController',
+        'imageDetails' => 'Event\ImageDetailController',
+        'locationDetails' => 'Event\LocationDetailController',
+        'registrationPayments' => 'Event\RegistrationPaymentController',
+        'speakers' => 'Event\SpeakerController',
+    ]);
+});
+
