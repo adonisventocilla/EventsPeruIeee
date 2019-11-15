@@ -27,7 +27,8 @@ class EventController extends Controller
     public function create(Request $request)
     {
         return view('events.index', [
-            'sadf' => 1,
+            'step' => $request->step,
+            'event_id' => $request->event_id
         ]);
     }
 

@@ -1,5 +1,5 @@
 <div class="form-group">
-        <form action="{{ route('hostdetails.store') }}" method="POST">
+        <form action="{{ route('hostDetails.store') }}" method="POST">
                 @csrf
             <!--
                 'event_id',
