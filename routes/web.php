@@ -23,7 +23,6 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-
     Route::resources([
         'events' => 'Event\EventController',
         'committeeDetails' => 'Event\CommitteeDetailController',

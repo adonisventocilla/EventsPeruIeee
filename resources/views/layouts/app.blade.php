@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Datepicker Files -->
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 <body>
     <div id="app">
@@ -50,8 +57,11 @@
                             @endif
                         @else
                             <img class="rounded-circle" src="{{ Auth::user()->avatar_original }}" alt="" height="40px" width="40px">
+                            <li class="nav-item" >
                             
-
+                                <a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>  
+                            
+                            </li>
                             <li class="nav-item dropdown">
                                     
                                 
@@ -82,5 +92,18 @@
             @yield('content')
         </main>
     </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'yyyy-mm-dd HH:mm:ss'
+            });
+        });
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss'  
+            });
+        });
+    </script>
 </body>
 </html>

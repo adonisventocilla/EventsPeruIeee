@@ -19,7 +19,7 @@ class CreateEventTable extends Migration
             $table->datetime('startTime');
             $table->datetime('endTime');
             $table->string('timeZone', 100);
-            $table->text('descrption');
+            $table->text('description');
             $table->text('header')->nullable();
             $table->text('footer')->nullable();
             $table->text('agenda')->nullable();
