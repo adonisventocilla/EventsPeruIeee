@@ -82,8 +82,13 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
-                </div>
 
+                </div>
+                @foreach ($events as $event)
+                    <div>{{ $event->title,
+
+                    }}</div>
+                @endforeach
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
