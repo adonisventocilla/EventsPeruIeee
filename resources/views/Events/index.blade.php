@@ -11,7 +11,7 @@
                             @if (isset($step))
                                 @switch($step)
                                 @case(1)
-                                        
+                                        @include('events.hostdetails.create')
                                     @break
                                 @case(2)
                                     
@@ -37,7 +37,18 @@
                                                     <p>Paso 1</p>
                                                 </div>
                                                 <div class="stepwizard-step col text-center">
-                                                    <a class="btn btn-secondary rounded-circle" disabled="disabled" disabled>2</a>
+                                                    @if (isset($step) && $step==1)
+                                                        <a class="btn btn-primary btn-outline-primary rounded-circle " aria-disabled="true">2</a>
+                                                        
+                                                    @else
+                                                        @if (isset($step) && $step==2)
+                                                            <a class="btn btn-primary btn-success rounded-circle " aria-disabled="true">1</a>
+                                                        @else
+                                                            <a class="btn btn-secondary rounded-circle" disabled="disabled" disabled>2</a>
+                                                        @endif
+                                                    @endif
+                                                    
+                                                    
                                                     <p>Paso 2</p>
                                                 </div>
                                                 <div class="stepwizard-step col text-center">

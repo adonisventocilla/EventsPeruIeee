@@ -24,9 +24,11 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        
+        return view('events.index', [
+            'sadf' => 1,
+        ]);
     }
 
     /**
@@ -67,7 +69,7 @@ class EventController extends Controller
         $data['endTime'] = $request['endTime'];
 
 
-        Event::create([
+        $event = Event::create([
             'title' => $data['title'],
             'startTime' => Carbon::parse($data['startTime']),
             'endTime' => Carbon::parse($data['endTime']),
@@ -84,10 +86,10 @@ class EventController extends Controller
             'eventCategory_id' => null,
         ]);
 
-        return view('events.index', [
-            'step' => '1'
+        return redirect()->route('events.create', [
+            'step' => 1,
+            'event_id' => $event->id
             ]);
-
     }
 
     /**
