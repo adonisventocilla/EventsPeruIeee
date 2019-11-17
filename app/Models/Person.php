@@ -23,11 +23,11 @@ class Person extends Model
         'firstName',
         'middleName',
         'lastName',
-        'timeZone',
         'email_verified_at',
         'status',
         'institute_id',
-        'user_id',
+        'document_id',
+        'phone_id',
     ];
 
 }

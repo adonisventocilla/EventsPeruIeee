@@ -16,12 +16,11 @@ class CreatePersonTable extends Migration
         Schema::create('person', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('firstName', 45);
-            $table->string('middleName', 45);
+            $table->string('middleName', 45)->nullable();
             $table->string('lastName', 100);
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('status');
-            $table->unsignedBigInteger('institute_id')->index();
-            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('institute_id')->index()->nullable();
             $table->timestamps();
         });
     }

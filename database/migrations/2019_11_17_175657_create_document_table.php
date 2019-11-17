@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegistrationPaymentTable extends Migration
+class CreateDocumentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateRegistrationPaymentTable extends Migration
      */
     public function up()
     {
-        Schema::create('registration_payment', function (Blueprint $table) {
+        Schema::create('document', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('event_id')->unique();
-            $table->datetime('startRegistration');
-            $table->datetime('endRegistration');
-            $table->integer('maximun');
+            $table->unsignedBigInteger('documentType_id');
+            $table->char('number', 10);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateRegistrationPaymentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registration_payment');
+        Schema::dropIfExists('document');
     }
 }

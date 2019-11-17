@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $event->title }}</h5>
                                 <p class="card-text">{{ $event->description }}</p>
-                                <a href="{{ route('events.show', ['event' =>  $event ])  }}" class="btn btn-primary">Inscribirse</a>
+                                <a href="{{ route('events.show', ['event' =>  $event ])  }}" class="btn btn-primary">Ver más</a>
                                 
                             </div>
                             <div class="card-footer">

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeysToPersonTable extends Migration
+class AddColumnsToPersonTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class AddForeignKeysToPersonTable extends Migration
     public function up()
     {
         Schema::table('person', function (Blueprint $table) {
-            $table->foreign('institute_id')
-                    ->references('id')->on('institute');
-                    
+            $table->unsignedBigInteger('document_id')->index()->after('status')->nullable();
+            $table->unsignedBigInteger('phone_id')->index()->after('document_id')->nullable();
         });
     }
 

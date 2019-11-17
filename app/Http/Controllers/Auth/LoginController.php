@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Person;
 use App\Models\UserType;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Socialite;
 use App\User;
+use Illuminate\Support\Facades\DB;
+
 class LoginController extends Controller
 {
     /*
@@ -72,27 +75,46 @@ class LoginController extends Controller
     {
         $authUser = User::where('provider_id', $user->id)->first();
 
+        
         if($authUser) {
             return $authUser;
         }
 
-        $u = User::create([
-            'nickname' => $user->name,
-            'email' => $user->email,
-            'provider' => strtoupper($provider),
-            'provider_id' => $user->id,
-            'avatar' => $user->avatar,
-            'avatar_original' => $user->avatar_original,
-        ]);
+        $name = explode(" ", $user->name);
+        
+        DB::beginTransaction();
+            $person = Person::create([
+                'firstName' => $name[0],
+                'middleName' => $name[1],
+                'lastName' => $name[2],
+                'email_verified_at' => null,
+                'status' => 1,//Activo
+                'institute_id' => null,
+                'document_id' => null,
+                'phone_id' => null,
+            ]);
+    
+            $u = User::create([
+                'nickname' => $user->name,
+                'email' => $user->email,
+                'provider' => strtoupper($provider),
+                'provider_id' => $user->id,
+                'avatar' => $user->avatar,
+                'avatar_original' => $user->avatar_original,
+                'user_id' => $person->id,
+                'person_id' => $person->id,
+            ]);
+    
+            $co = UserType::create([
+                'user_id' => $u->id,
+                'type' => 1,
+            ]);
+        if (!$co) {
+            DB::rollBack();
+        }
 
-        UserType::create([
-            'user_id' => $u->id,
-            'type' => 1,
-        ]);
-
-
+        DB::commit();
+        
         return $u;
-
-
     }
 }

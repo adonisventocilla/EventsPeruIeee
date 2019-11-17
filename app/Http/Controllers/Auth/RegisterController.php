@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Models\Person;
 use App\Models\UserType;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -50,7 +52,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nickname' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,17 +67,42 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $u = User::create([
-            'nickname' => $data['nickname'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $userExist = User::All()->where('email','=', $data['email']);
         
-        UserType::create([
-            'user_id' => $u->id,
-            'type' => 1, //General
-        ]);
+        if ($userExist) {
+            return $userExist;
+        }
 
+        DB::beginTransaction();
+            $person = Person::create([
+                'firstName' => $data['firstname'],
+                'middleName' => '',
+                'lastName' => $data['lastname'],
+                'email_verified_at' => null,
+                'status' => 1,//Activo
+                'institute_id' => null,
+                'document_id' => null,
+                'phone_id' => null,
+            ]);
+    
+    
+            $u = User::create([
+                'nickname' => $data['firstname']." ".$data['lastname'],
+                'person_id' => $person->id,
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+            
+    
+            $co = UserType::create([
+                'user_id' => $u->id,
+                'type' => 1, //General
+            ]);
+        
+        if (!$co) {
+            DB::rollBack();
+        }
+        DB::commit();
         
         return $u;
     }

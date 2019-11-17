@@ -17,6 +17,7 @@ class CreateAttendeventTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('userType_id')->index();
             $table->unsignedBigInteger('event_id')->index();
+            $table->unsignedBigInteger('paymentway_id')->index();
             $table->timestamps();
         });
     }

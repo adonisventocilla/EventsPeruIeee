@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeysToPersonTable extends Migration
+class AddForeginKeysToPaymentwayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddForeignKeysToPersonTable extends Migration
      */
     public function up()
     {
-        Schema::table('person', function (Blueprint $table) {
-            $table->foreign('institute_id')
-                    ->references('id')->on('institute');
-                    
+        Schema::table('paymentway', function (Blueprint $table) {
+            $table->foreign('registration_Payment_id')->references('id')->on('registration_payment');
         });
     }
 
@@ -27,7 +25,7 @@ class AddForeignKeysToPersonTable extends Migration
      */
     public function down()
     {
-        Schema::table('person', function (Blueprint $table) {
+        Schema::table('paymentway', function (Blueprint $table) {
             //
         });
     }

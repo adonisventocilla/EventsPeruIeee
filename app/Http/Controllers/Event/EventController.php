@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class EventController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
