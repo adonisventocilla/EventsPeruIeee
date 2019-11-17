@@ -17,7 +17,7 @@ class EventsTableSeeder extends Seeder
             'startTime' => '2019-11-13',
             'endTime' => '2019-11-13',
             'timeZone' => 'Pe',
-            'descrption' => 'Taller de introducción para el uso de Arduino',
+            'description' => 'Taller de introducción para el uso de Arduino',
             'header' => 'Taller',
             'footer' => 'Universidad Autónoma del Perú',
             'agenda' => 'Usar Arduino',
