@@ -24,13 +24,16 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+
+
+
+    /*public function create(Request $request)
     {
         return view('events.index', [
             'step' => $request->step,
             'event_id' => $request->event_id
         ]);
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -38,7 +41,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         
         $data = $request->validate([
@@ -91,6 +94,165 @@ class EventController extends Controller
             'step' => 1,
             'event_id' => $event->id
             ]);
+    }*/
+
+    public function createStep1(Request $request)
+    {
+        $event = $request->session()->get('event');
+        return view('events.create-step1',compact('event'));
+    }
+
+    public function postCreateStep1(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            
+            'title' => 'required',
+            'startTime' => 'required',
+            'endTime' => 'required',
+            /*'timeZone' => 'required',*/
+            'description' => 'required',
+            /*'header' => 'required',
+            'footer' => 'required',
+            'agenda' => 'required',
+            'keywords' => 'required',
+            'inviteStudents' => 'required',
+            'remotelyAccessible' => 'required'*/
+        ]);
+
+        if(empty($request->session()->get('event'))){
+            $event = new Event();
+            $event->fill($validatedData);
+            $request->session()->put('event', $event);
+        }else{
+            $event = $request->session()->get('event');
+            $event->fill($validatedData);
+            $request->session()->put('event', $event);
+        }
+
+        return redirect('/events/create-step2');
+
+    }
+
+    public function createStep2(Request $request)
+    {
+        $event = $request->session()->get('event');
+        return view('events.create-step2',compact('event'));
+    }
+
+    
+    public function postCreateStep2(Request $request)
+    {
+        $validatedData = $request->validate([
+            
+            'comite' => 'required',
+            'correo' => 'required',
+            'colaborador' => 'required',
+        ]);
+
+        if(empty($request->session()->get('event'))){
+            $event = new Event();
+            $event->fill($validatedData);
+            $request->session()->put('event', $event);
+        }else{
+            $event = $request->session()->get('event');
+            $event->comite = $request->comite;
+            $event->correo = $request->correo;
+            $event->colaborador = $request->colaborador;
+            $request->session()->put('event', $event);
+        }
+
+        return redirect('/events/create-step3');
+    }
+
+   
+    public function createStep3(Request $request)
+    {
+        $event = $request->session()->get('event');
+        return view('events.create-step3',compact('event', $event));
+    }
+
+    public function postCreateStep3(Request $request)
+    {
+        $validatedData = $request->validate([
+            
+            'address1' => 'required',
+            'address2' => 'required',
+            'ciudad' => 'required',
+        ]);
+
+        if(empty($request->session()->get('event'))){
+            $event = new Event();
+            $event->fill($validatedData);
+            $request->session()->put('event', $event);
+        }else{
+            $event = $request->session()->get('event');
+            $event->address1 = $request->address1;
+            $event->address2 = $request->address2;
+            $event->ciudad = $request->ciudad;
+            $event->edificio = $request->edificio;
+            $event->numero_habitaciones = $request->numero_habitaciones;
+            $event->url_map = $request->url_map;
+            $request->session()->put('event', $event);
+
+        }
+
+        return redirect('/events/create-step4');
+    }
+
+    public function createStep4(Request $request)
+    {
+        $event = $request->session()->get('event');
+
+        return view('events.create-step4',compact('event', $event));
+    }
+
+    public function postCreateStep4(Request $request)
+    {
+        
+        $validatedData = $request->validate([
+            
+            'tema' => 'required',
+            'profesor_dist' => 'required',
+            'descripcion_tema' => 'required',
+        ]);
+
+        if(empty($request->session()->get('event'))){
+            $event = new Event();
+            $event->fill($validatedData);
+            $request->session()->put('event', $event);
+        }else{
+            $event = $request->session()->get('event');
+            $event->tema = $request->tema;
+            $event->profesor_dist = $request->profesor_dist;
+            $event->descripcion_tema = $request->descripcion_tema;
+            $event->prefijo = $request->prefijo;
+            $event->nombre = $request->nombre;
+            $event->apellido_paterno = $request->apellido_paterno;
+            $event->apellido_materno = $request->apellido_materno;
+            $event->url_compañia = $request->url_compañia;
+            $request->session()->put('event', $event);
+
+        }
+
+        return redirect('/events/create-step5');
+    }
+
+
+    public function createStep5(Request $request)
+    {
+        $event = $request->session()->get('event');
+        return view('events.create-step5',compact('event',$event));
+    }
+
+
+    public function storeAllDatesEvent(Request $request)
+    {
+        $event = $request->session()->get('event');
+        $event->save();
+
+        dd($event);
+        return redirect('/events');
     }
 
     /**
