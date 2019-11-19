@@ -20,7 +20,13 @@ class EventThemeDetail extends Model
      */
     protected $fillable = [
         'event_id',
-        'name',
         'description',
+        'theme',
+        'prefix',
+        'firstname',
+        'middlename',
+        'lastname',
+        'nickname',
+        'url',
     ];
 }

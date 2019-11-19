@@ -24,6 +24,10 @@ class RegistrationPayment extends Model
         'startRegistration',
         'endRegistration',
         'maximun',
-        'paymentForm',
     ];
+
+    public function paymentways()
+    {
+        return $this->hasMany('App\Models\PaymentWay', 'registration_Payment_id');
+    }
 }

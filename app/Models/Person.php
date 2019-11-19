@@ -30,4 +30,8 @@ class Person extends Model
         'phone_id',
     ];
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'person_id');
+    }
 }

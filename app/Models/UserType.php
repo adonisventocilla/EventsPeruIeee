@@ -20,7 +20,7 @@ class UserType extends Model
      * @var array
      */
     protected $fillable = [
-        'type',
+        'role_id',
         'user_id',
     ];
 

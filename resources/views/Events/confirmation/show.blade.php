@@ -8,12 +8,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <form action="{{ route('events.store') }}" method="POST">
-                                {{ csrf_field() }}
+                            <form action="{{ route('confirmations.store') }}" method="POST">
                                 @csrf
-                                {{ $event }}
-                                Estos son todos los datos obtenidos en cada paso
-                                Desea Guardarlos??
+                                Debería mostrarse todos los datos insertados
                                 <button class="btn btn-primary" type="submit">
                                     Guardar
                                 </button>

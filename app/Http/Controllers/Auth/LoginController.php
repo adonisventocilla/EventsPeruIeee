@@ -107,7 +107,7 @@ class LoginController extends Controller
     
             $co = UserType::create([
                 'user_id' => $u->id,
-                'type' => 1,
+                'role_id' => 1,
             ]);
         if (!$co) {
             DB::rollBack();

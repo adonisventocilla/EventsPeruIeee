@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsertypeTable extends Migration
+class ChangeAttributeTypeToUsertypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateUsertypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('usertype', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('role_id')->index();
-            $table->unsignedBigInteger('user_id')->index();
-            $table->timestamps();
+        Schema::table('usertype', function (Blueprint $table) {
+            $table->foreign('role_id')->references('id')->on('role');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateUsertypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usertype');
+        Schema::table('usertype', function (Blueprint $table) {
+            //
+        });
     }
 }

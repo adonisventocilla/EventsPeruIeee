@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{ $event }}
+{{ session()->get('event') }}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,8 +9,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <form action="{{ route('event-store-step3') }}" method="POST">
-                                {{ csrf_field() }}
+                            <form action="{{ route('locationDetails.store') }}" method="POST">
+                                
                                 @csrf
                                 <table class="table">
                                     <tbody>
@@ -19,31 +19,22 @@
                                                 <label for="">
                                                     direccion
                                                 </label>
-                                                <input value="{{ $address1->name ?? '' }}" class="form-control" id="title" name="address1" type="text">
+                                                <input value="{{ $addressLine1->name ?? '' }}" class="form-control" id="title" name="addressLine1" type="text">
                                                     <small class="form-text text-muted" id="helpId">
                                                         Help text
                                                     </small>
-                                                </input>
                                             </td>
                                         </tr>
                                        
-                                       <tr>
-                                            <td colspan="2">
-                                                <label for="">
-                                                    direccion 2 
-                                                </label>
-                                                <input value="{{ $address2->name ?? '' }}" class="form-control" id="title" name="address2" type="text">
-                                                </input>
-                                            </td>
-                                        </tr>
+                                       
 
                                         <tr>
                                             <td colspan="2">
                                                 <label for="">
-                                                    cuidad
+                                                    ciudad
                                                 </label>
-                                                <input class="form-control" id="title" name="ciudad" type="text">
-                                                </input>
+                                                <input class="form-control" id="title" name="city" type="text">
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -51,8 +42,8 @@
                                                 <label for="">
                                                     edificio
                                                 </label>
-                                                <input class="form-control" id="title" name="edificio" type="text">
-                                                </input>
+                                                <input class="form-control" id="title" name="building" type="text">
+                                                
                                             </td>
                                         </tr>
 
@@ -62,7 +53,7 @@
                                                     # de habitacion
                                                 </label>
                                                 <input class="form-control" id="title" name="numero_habitaciones" type="text">
-                                                </input>
+                                                
                                             </td>
                                         </tr>
 
