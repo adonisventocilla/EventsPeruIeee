@@ -96,7 +96,7 @@ class RegisterController extends Controller
     
             $co = UserType::create([
                 'user_id' => $u->id,
-                'type' => 1, //General
+                'role_id' => 1, //General
             ]);
         
         if (!$co) {

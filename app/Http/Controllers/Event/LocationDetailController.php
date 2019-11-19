@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Event;
 use App\Models\LocationDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use ubigeo_peru;
 
 class LocationDetailController extends Controller
 {
@@ -15,7 +16,7 @@ class LocationDetailController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -25,7 +26,12 @@ class LocationDetailController extends Controller
      */
     public function create()
     {
-        //
+
+        if (empty(session()->get('event'))) {
+            return redirect()->route('events.index');
+        }
+        
+        return view('events.locationdetails.create');
     }
 
     /**
@@ -36,7 +42,44 @@ class LocationDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        session()->forget('location');
+        
+        $data = $request->validate([
+            'addressLine1' => 'required',
+            'city' => 'required',
+            'roomNumber' => '',
+            'building' => '',
+            'url' => '',
+        ]);
+            $location['building'] = 'null';
+            $location['addressLine2'] = 'null';
+            $location['roomNumber'] = 'null';
+            $location['city'] = 'null';
+            $location['country'] = 'null';
+            $location['province'] = 'null';
+            $location['postalCode'] = 'null';
+
+            try {
+                if(empty($request->session()->get('location'))){
+                    $location = new LocationDetail();
+                    $location->fill($data);
+                    $request->session()->put('location', $location);
+                }else{
+                    $location = $request->session()->get('location');
+                    $location->addressLine1 = $request->addressLine1;
+                    $location->addressLine2 = $request->addressLine2;
+                    $location->city = $request->city;
+                    $location->building = $request->building;
+                    $location->roomNumber = $request->roomNumber;
+                    $request->session()->put('location', $location);
+        
+                }
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        
+
+        return redirect()->route('eventThemeDetails.create');
     }
 
     /**

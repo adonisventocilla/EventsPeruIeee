@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+{{ $data['title'] }}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,9 +9,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <form action="{{ route('event-store-step2') }}" method="POST">
+                            <form action="" method="POST">
+                                
                                 {{ csrf_field() }}
+                                
                                 @csrf
+                                
                                 <table class="table">
                                     <tbody>
                                         <tr>

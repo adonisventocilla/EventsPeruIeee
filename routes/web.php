@@ -21,7 +21,9 @@ Route::get('events/{event}', 'Event\EventController@show')->name('events.show');
 
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/home', 'HomeController@index')->name('home');
+
     Route::resources([
         'committeeDetails' => 'Event\CommitteeDetailController',
         'eventThemeDetails' => 'Event\EventThemeDetailController',
@@ -31,27 +33,13 @@ Route::middleware(['auth'])->group(function () {
         'registrationPayments' => 'Event\RegistrationPaymentController',
         'speakers' => 'Event\SpeakerController',
     ]);
+
     Route::resource('events', 'Event\EventController')->except(['show']);
     
     Route::get('attendances/{event}', 'Attend\AttendController@create')->name('attendances.create');
     Route::resource('attendances', 'Attend\AttendController')->except(['create']);
 
-    Route::get('/events/create-step1', 'Event\EventController@createStep1');
-    Route::post('/events/create-step1', 'Event\EventController@postCreateStep1')->name('event-store-step1');
-    
-    Route::get('/events/create-step2', 'Event\EventController@createStep2');
-    Route::post('/events/create-step2', 'Event\EventController@postCreateStep2')->name('event-store-step2');
-    
-    Route::get('/events/create-step3', 'Event\EventController@createStep3');
-    Route::post('/events/create-step3', 'Event\EventController@postCreateStep3')->name('event-store-step3');
-    
-    
-    Route::get('/events/create-step4', 'Event\EventController@createStep4');
-    Route::post('/events/create-step4', 'Event\EventController@postCreateStep4')->name('event-store-step4');
-    
-    
-    Route::get('/events/create-step5', 'Event\EventController@createStep5');
-    Route::post('/events/store', 'Event\EventController@storeAllDatesEvent')->name('events.store');
-
+    Route::get('confirmations', 'ConfirmationController@show')->name('confirmations.show');
+    Route::post('confirmations', 'ConfirmationController@store')->name('confirmations.store');
 });
 

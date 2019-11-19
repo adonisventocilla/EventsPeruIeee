@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsertypeTable extends Migration
+class CreateRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateUsertypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('usertype', function (Blueprint $table) {
+        Schema::create('role', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('role_id')->index();
-            $table->unsignedBigInteger('user_id')->index();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateUsertypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usertype');
+        Schema::dropIfExists('role');
     }
 }

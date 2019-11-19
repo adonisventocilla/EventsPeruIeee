@@ -25,4 +25,8 @@ class Institute extends Model
         'section_id',
     ];
 
+    public function section()
+    {
+        return $this->belongsTo('App\Models\Section', 'section_id');
+    }
 }

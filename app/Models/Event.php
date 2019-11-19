@@ -35,4 +35,19 @@ class Event extends Model
         'eventSubCategory_id',
         'eventCategory_id',
     ];
+
+    public function locationDetails()
+    {
+        return $this->hasMany('App\Models\LocationDetail');
+    }
+
+    public function eventThemeDetails()
+    {
+        return $this->hasMany('App\Models\EventThemeDetail', 'event_id');
+    }
+
+    public function registrationPayments()
+    {
+        return $this->hasOne('App\Models\RegistrationPayment', 'event_id');
+    }
 }

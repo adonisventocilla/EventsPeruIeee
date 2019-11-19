@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class PaymentWay extends Model
 {
-    
-     /**
+    /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table='region';
+    protected $table='paymentway';
 
     /**
      * The attributes that are mass assignable.
@@ -20,14 +19,10 @@ class Region extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'price',
+        'type_id',
+        'registration_Payment_id',
     ];
 
-    public function sections()
-    {
-        return $this->hasMany('App\Models\Section', 'region_id');
-    }
-
-    
 
 }

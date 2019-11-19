@@ -24,4 +24,13 @@ class Section extends Model
         'region_id',
     ];
 
+    public function institutes()
+    {
+        return $this->hasMany('App\Models\Institute', 'section_id');
+    }
+    public function region()
+    {
+        return $this->belongsTo('App\Models\Region', 'region_id');
+    }
+
 }
