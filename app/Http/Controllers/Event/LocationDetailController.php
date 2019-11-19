@@ -49,7 +49,7 @@ class LocationDetailController extends Controller
             'city' => 'required',
             'roomNumber' => '',
             'building' => '',
-            'url_map' => '',
+            'url' => '',
         ]);
             $location['building'] = 'null';
             $location['addressLine2'] = 'null';

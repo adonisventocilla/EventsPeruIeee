@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="maximun">Aforo</label>
+                                  <label for="maximun">Aforo:</label>
                                   <input type="number"
                                     class="form-control" name="maximun" id="maximun" aria-describedby="helpId" placeholder="">
                                   <small id="helpId" class="form-text text-muted">Cantidad de personas máxima</small>

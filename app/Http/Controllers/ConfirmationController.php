@@ -53,7 +53,7 @@ class ConfirmationController extends Controller
             throw $th;
         }
         DB::commit();
-        dd('Debe haber salido bién');
+        
         return view('/home');
     }
 }

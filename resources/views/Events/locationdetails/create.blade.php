@@ -12,63 +12,33 @@
                             <form action="{{ route('locationDetails.store') }}" method="POST">
                                 
                                 @csrf
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                                <label for="">
-                                                    direccion
-                                                </label>
-                                                <input value="{{ $addressLine1->name ?? '' }}" class="form-control" id="title" name="addressLine1" type="text">
-                                                    <small class="form-text text-muted" id="helpId">
-                                                        Help text
-                                                    </small>
-                                            </td>
-                                        </tr>
-                                       
-                                       
 
-                                        <tr>
-                                            <td colspan="2">
-                                                <label for="">
-                                                    ciudad
-                                                </label>
-                                                <input class="form-control" id="title" name="city" type="text">
-                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <label for="">
-                                                    edificio
-                                                </label>
-                                                <input class="form-control" id="title" name="building" type="text">
-                                                
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td colspan="2">
-                                                <label for="">
-                                                    # de habitacion
-                                                </label>
-                                                <input class="form-control" id="title" name="numero_habitaciones" type="text">
-                                                
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td colspan="2">
-                                                <label for="">
-                                                    URL del mapa
-                                                </label>
-                                                <input class="form-control" id="title" name="url_map" type="text">
-                                                </input>
-                                            </td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
+                                <div class="form-group">
+                                  <label for="addressLine1">Dirección</label>
+                                  <input value="{{ $addressLine1->name ?? '' }}" type="text" name="addressLine1" id="addressLine1" class="form-control" placeholder="" aria-describedby="helpId">
+                                  <small id="helpId" class="text-muted">Help text</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="city">Ciudad:</label>
+                                  <input type="text" class="form-control" name="city" id="city" aria-describedby="helpId" placeholder="">
+                                  <small id="helpId" class="form-text text-muted">Help text</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="building">Edificio:</label>
+                                  <input type="text" class="form-control" name="building" id="building" aria-describedby="helpId" placeholder="">
+                                  <small id="helpId" class="form-text text-muted">Help text</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="roomNumber">Número de habitación</label>
+                                  <input type="text" class="form-control" name="roomNumber" id="roomNumber" aria-describedby="helpId" placeholder="">
+                                  <small id="helpId" class="form-text text-muted">Help text</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="url">URL:</label>
+                                  <input type="text" class="form-control" name="url" id="url" aria-describedby="helpId" placeholder="">
+                                  <small id="helpId" class="form-text text-muted">Help text</small>
+                                </div>
+                                
                                 <button class="btn btn-primary" type="submit">
                                     Continuar
                                 </button>
@@ -81,3 +51,4 @@
     </div>
 </div>
 @endsection
+
