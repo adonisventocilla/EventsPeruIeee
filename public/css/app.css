@@ -16957,3 +16957,21 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
+/*!
+ * Font Awesome Free 5.11.2 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+@font-face {
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot?5063b105c7646c8043d58c5289f02cca);
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot?5063b105c7646c8043d58c5289f02cca) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2?cccc9d29470e879e40eb70249d9a2705) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff?c5e0f14f88a828261ba01558ce2bf26f) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf?06147b6cd88c7346cecd1edd060cd5de) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg?a9c4bb7348f42626454c988dbde1d0a0) format("svg");
+}
+
+.fab {
+  font-family: "Font Awesome 5 Brands";
+}
+

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+
+<div class="container" >
     <div class="row justify-content-center">
         @foreach ($events as $event)
             <div class="col-md-4">

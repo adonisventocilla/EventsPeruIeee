@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="min-height: 100%; background-size: cover">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Datepicker Files -->
     
@@ -27,11 +27,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 <body>
+    <header>    
+        <div style="background-color: #00629B ">
+            <table>
+                    <tr>
+                        <th><i style="color: white;" class="fas fa-phone-alt">&nbsp;<span style="font-family:unset">(+51-1) 424 - 7598</span></i>&nbsp;&nbsp;<i style="color: white;" class="fas fa-envelope">&nbsp;<span style="font-family:unset">informes@ieee.org.pe</span></i>&nbsp;&nbsp;<i style="color: white" class="fab fa-youtube"></i>&nbsp;&nbsp;<i style="color: white;" class="fab fa-facebook-f"></i></th>
+                    </tr>
+            </table>
+        </div>
+    </header>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('img') }}/logoEventsIEEE.png" style="width: 13%" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                    <!--{{ config('app.name', 'Laravel') }}-->
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -88,9 +98,12 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main class="py-5" style="background-color: #1E8CCB;width: 100%; height: 100%;background-size:">
+                @yield('content')
         </main>
+        <footer style="background-color: black;">
+            <h6 style="color: white">Derechos Reservados 2019 | Seccion Peru del IEEE</h6>
+        </footer>
     </div>
 
     <script type="text/javascript">
