@@ -59,12 +59,9 @@ class LoginController extends Controller
             return redirect('/login');
         }
         
-        /**
-        * // Solo permitir a personas con @ieee.org para logearse
-        * if(explode("@", $user->email)[1] !== 'ieee.org'){
-        *    return redirect()->to('/');
-        * }
-        */
+        
+        
+        
 
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
@@ -75,6 +72,13 @@ class LoginController extends Controller
     {
         $authUser = User::where('provider_id', $user->id)->first();
 
+        // Solo permitir a personas con @ieee.org para logearse
+        if(explode("@", $user->email)[1] !== 'ieee.org'){
+            $role_id = 2;
+            session()->put('role_id', '2');
+         } else {
+            $role_id = 1;
+         }
         
         if($authUser) {
             session()->put('userId', $authUser->id);
@@ -82,12 +86,17 @@ class LoginController extends Controller
         }
 
         $name = explode(" ", $user->name);
+
+        
+         if(isset($name[3])){
+             $name[3] = "";
+         }
         
         DB::beginTransaction();
             $person = Person::create([
                 'firstName' => $name[0],
                 'middleName' => $name[1],
-                'lastName' => $name[2],
+                'lastName' => $name[2] . $name[3],
                 'email_verified_at' => null,
                 'status' => 1,//Activo
                 'institute_id' => null,
@@ -108,7 +117,7 @@ class LoginController extends Controller
     
             $co = UserType::create([
                 'user_id' => $u->id,
-                'role_id' => 1,
+                'role_id' => $role_id,
             ]);
 
             session()->put('userId', $u->id);

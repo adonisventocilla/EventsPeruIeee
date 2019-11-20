@@ -40,8 +40,9 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('img') }}/logoEventsIEEE.png" style="width: 13%" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                    <img src="{{ asset('img') }}/logoEventsIEEE.png" style="max-width: 13%;" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                     <!--{{ config('app.name', 'Laravel') }}-->
+                    
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -66,12 +67,21 @@
                                 </li>
                             @endif
                         @else
-                            <img class="rounded-circle" src="{{ Auth::user()->avatar_original }}" alt="" height="40px" width="40px">
-                            <li class="nav-item" >
+                            <small> ¡Bienvenido {{ explode(" ",Auth::user()->nickname)[0] }}!</small>
+                            @if (session()->has('role_id'))
+                                <li class="nav-item" >
+                                
+                                    <a class="nav-link" href="{{ url('/home') }}"> Principal <span class="sr-only">(current)</span></a>  
+                                
+                                </li>
+                            @endif
                             
-                                <a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>  
                             
-                            </li>
+                            <img class="rounded-circle" src="{{ Auth::user()->avatar_original }} ?? " alt="" height="40px" width="40px">
+
+                            
+                            
+                            
                             <li class="nav-item dropdown">
                                     
                                 
@@ -101,11 +111,23 @@
         <main class="py-5" style="background-color: #1E8CCB;width: 100%; height: 100%;background-size:">
                 @yield('content')
         </main>
-        <footer style="background-color: black;">
-            <h6 style="color: white">Derechos Reservados 2019 | Seccion Peru del IEEE</h6>
-        </footer>
-    </div>
 
+        {{-- <footer style="background-color: black;">
+            <h6 style="color: white">Derechos Reservados 2019 | Seccion Peru del IEEE</h6>
+        </footer> --}}
+        
+    </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue background-color:black">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">Derechos Reservados 2019© |
+          <a href=" "> Seccion Peru del IEEE</a>
+        </div>
+        <!-- Copyright -->
+      
+      </footer>
+      <!-- Footer -->
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({

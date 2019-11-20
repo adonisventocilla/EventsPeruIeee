@@ -75,6 +75,10 @@ class RegisterController extends Controller
             return $userExist;
         }
 
+        if (explode("@", $data['email'])[1] !== 'ieee.org') {
+            return redirect('/login');
+        }
+
         DB::beginTransaction();
         try {
             
