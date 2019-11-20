@@ -67,13 +67,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $userExist = User::All()->where('email','=', $data['email']);
+        
+        $userExist = User::where('email','=', $data['email'])->first();
+        
         
         if ($userExist) {
             return $userExist;
         }
 
         DB::beginTransaction();
+        try {
+            
             $person = Person::create([
                 'firstName' => $data['firstname'],
                 'middleName' => '',
@@ -85,7 +89,7 @@ class RegisterController extends Controller
                 'phone_id' => null,
             ]);
     
-    
+                
             $u = User::create([
                 'nickname' => $data['firstname']." ".$data['lastname'],
                 'person_id' => $person->id,
@@ -94,13 +98,15 @@ class RegisterController extends Controller
             ]);
             
     
-            $co = UserType::create([
+            UserType::create([
                 'user_id' => $u->id,
                 'role_id' => 1, //General
             ]);
-        
-        if (!$co) {
+
+            session()->put('userId', $u->id);
+        } catch (\Throwable $th) {
             DB::rollBack();
+            throw $th;
         }
         DB::commit();
         

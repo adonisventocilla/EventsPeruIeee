@@ -77,6 +77,7 @@ class LoginController extends Controller
 
         
         if($authUser) {
+            session()->put('userId', $authUser->id);
             return $authUser;
         }
 
@@ -109,6 +110,8 @@ class LoginController extends Controller
                 'user_id' => $u->id,
                 'role_id' => 1,
             ]);
+
+            session()->put('userId', $u->id);
         if (!$co) {
             DB::rollBack();
         }

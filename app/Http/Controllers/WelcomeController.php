@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\User;
 use Goutte\Client as GoutteClient;
 use Illuminate\Http\Request;
 use Symfony\Component\BrowserKit\Client;
@@ -32,7 +33,18 @@ class WelcomeController extends Controller
         // dd();
         //dd($title->html());
         //dd($crawler);
+        if (session()->has('userId')) {
+            $eventsAttended = User::find(session()->get('userId'))->usertypes()->where('role_id', '1')->first()->events()->get();
+        } else {
+            $eventsAttended = null;
+        }
+        
+        
+        
         $events = Event::All();
-        return view('welcome',['events' => $events]);
+        return view('welcome',[
+            'events' => $events,
+            'eventsAttended' => $eventsAttended,
+            ]);
     }
 }

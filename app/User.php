@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role', 'usertype', 'user_id', 'role_id');
     }
+
+    public function usertypes()
+    {
+        return $this->hasMany('App\Models\UserType','user_id');
+    }
 }

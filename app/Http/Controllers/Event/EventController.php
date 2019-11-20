@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Event;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use Carbon\Carbon;
 
 class EventController extends Controller
@@ -106,31 +107,6 @@ class EventController extends Controller
         return redirect()->route('locationDetails.create');
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
- 
-    public function postCreateStep4(Request $request)
-    {
-        
-        
-    }
-
-
-    public function createStep5(Request $request)
-    {
-        $event = $request->session()->get('event');
-        return view('events.create-step5',compact('event',$event));
-    }
-
-
-    public function storeAllDatesEvent(Request $request)
-    {
-        $event = $request->session()->get('event');
-        $event->save();
-
-        dd($event);
-        return redirect('/events');
-    }
 
     /**
      * Display the specified resource.
@@ -140,9 +116,15 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        
+        $eventsAttended = User::find(session()->get('userId'))->usertypes()->where('role_id', '1')->first()->events()->where('event_id', $event->id)->get()->first();
+        if ($eventsAttended) {
+            $registred = 1;
+        } else {
+            $registred = 0;
+        }
         return view('events.show', [
             'event' => $event,
+            'registred' => $registred,
         ]);
     }
 
