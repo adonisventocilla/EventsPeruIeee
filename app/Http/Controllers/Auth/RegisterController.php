@@ -71,14 +71,16 @@ class RegisterController extends Controller
         $userExist = User::where('email','=', $data['email'])->first();
         
         
-        if ($userExist) {
+        if ($userExist !== null) {
             return $userExist;
         }
+        
 
-        if (explode("@", $data['email'])[1] !== 'ieee.org') {
-            return redirect('/login');
-        }
+        // if (explode("@", $data['email'])[1] !== 'ieee.org') {
+        //     return redirect('/login');
+        // }
 
+       
         DB::beginTransaction();
         try {
             

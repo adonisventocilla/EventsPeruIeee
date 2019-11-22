@@ -42,15 +42,19 @@ class EventThemeDetailController extends Controller
     {
         session()->forget('eventThemeDetail');
 
+        $data['url'] = 'null';
+
         $data = $request->validate([
-            'theme' => 'required',
-            'description' => 'required',
-            'prefix' => 'required',
-            'firstname' => 'required',
-            'middlename' => 'required',
-            'lastname' => 'required',
-            'nickname' => 'required',
-            'url' => 'required',
+            'theme' => 'required|max:255',
+            'description' => 'required|string',
+            'prefix' => 'required|string',
+            'firstname' => 'required|string|max:40',
+            'middlename' => 'required|string|max:50',
+            'lastname' => 'required|string|max:100',
+            'nickname' => 'required|max:100',
+            'url' => '',
+        ], [
+            'firstname.string' => 'Debe ser completamente texto'
         ]);
 
 

@@ -17,7 +17,6 @@ Auth::routes();
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
-Route::get('events/{event}', 'Event\EventController@show')->name('events.show');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -33,7 +32,8 @@ Route::middleware(['auth'])->group(function () {
         'registrationPayments' => 'Event\RegistrationPaymentController',
         'speakers' => 'Event\SpeakerController',
     ]);
-
+    
+    
     Route::resource('events', 'Event\EventController')->except(['show']);
     
     Route::get('attendances/{event}', 'Attend\AttendController@create')->name('attendances.create');
@@ -43,3 +43,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('confirmations', 'ConfirmationController@store')->name('confirmations.store');
 });
 
+
+Route::get('events/{event}', 'Event\EventController@show')->name('events.show');

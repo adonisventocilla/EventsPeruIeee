@@ -29,6 +29,11 @@ class UserType extends Model
         return $this->belongsToMany('App\Models\Event', 'attendevent','userType_id','event_id');
     }
 
+    public function eventscreated()
+    {
+        return $this->belongsToMany('App\Models\Event', 'createevent', 'userType_id','event_id');
+    }
+
     public function attendevents()
     {
         return $this->hasMany('App\Models\AttendEvent','userType_id');

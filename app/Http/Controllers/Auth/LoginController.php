@@ -72,12 +72,20 @@ class LoginController extends Controller
     {
         $authUser = User::where('provider_id', $user->id)->first();
 
-        // Solo permitir a personas con @ieee.org para logearse
-        if(explode("@", $user->email)[1] !== 'ieee.org'){
-            $role_id = 2;
-            session()->put('role_id', '2');
+        $role_id = [
+            1
+        ];
+        // Solo permitir a personas con @ieee.org para logearse con rol 2--miembro del IEEE
+        if(explode("@", $user->email)[1] == 'ieee.org' || $user->email == 'aaparcana@autonoma.edu.pe'){
+            $role_id = [
+                1,
+                2
+            ];
+            session()->put('role_id', $role_id);
          } else {
-            $role_id = 1;
+            $role_id = [
+                1
+            ];
          }
         
         if($authUser) {
@@ -88,11 +96,12 @@ class LoginController extends Controller
         $name = explode(" ", $user->name);
 
         
-         if(isset($name[3])){
+         if(!isset($name[3])){
              $name[3] = "";
          }
         
         DB::beginTransaction();
+        try {
             $person = Person::create([
                 'firstName' => $name[0],
                 'middleName' => $name[1],
@@ -115,16 +124,13 @@ class LoginController extends Controller
                 'person_id' => $person->id,
             ]);
     
-            $co = UserType::create([
-                'user_id' => $u->id,
-                'role_id' => $role_id,
-            ]);
+            $u->roles()->attach($role_id);
 
             session()->put('userId', $u->id);
-        if (!$co) {
+        } catch (\Throwable $th) {
             DB::rollBack();
+            throw $th;
         }
-
         DB::commit();
         
         return $u;

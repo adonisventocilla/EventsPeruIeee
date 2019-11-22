@@ -17,7 +17,7 @@ class CreateCommitteedetailTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id')->index();
             $table->unsignedBigInteger('committeeType_id')->index();
-            
+            $table->unsignedBigInteger('userType_id')->indeX()->nullable();
             $table->timestamps();
         });
     }

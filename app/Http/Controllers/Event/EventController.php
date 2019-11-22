@@ -25,15 +25,11 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-
         session()->forget('event');
 
-        return view('events.index', [
-            'step' => $request->step,
-            'event_id' => $request->event_id
-        ]);
+        return view('events.create');
     }
 
     /**
@@ -47,9 +43,22 @@ class EventController extends Controller
         session()->forget('event');
 
         $data = $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:event|max:255',
+            'description' => 'required',
+            'startTime' => 'required',
+            'endTime' => 'required',
+            'header',
+            'footer',
+            'agenda',
+            'status',
+            'timeZone',
+            'keywords',
         ], [
-            'title.required' => 'Seleccione una opción',
+            'title.required' => 'Es necesario un título ',
+            'description.required' => 'Escribe una descripción del evento',
+            'startTime.required' => 'Escoge un tiempo de inicio',
+            'endTime.required' => 'Escoge un timepo de fin',
+
         ]);
         
         if (isset($request['inviteStudents'])) {
@@ -85,24 +94,7 @@ class EventController extends Controller
             $event->fill($data);
             $request->session()->put('event', $event);
         }
-
-        // $event = Event::create([
-        //     'title' => $data['title'],
-        //     'startTime' => Carbon::parse($data['startTime']),
-        //     'endTime' => Carbon::parse($data['endTime']),
-        //     'timeZone' => 'pe',
-        //     'description' => $data['description'],
-        //     'header' => $data['header'],
-        //     'footer' => $data['footer'],
-        //     'agenda' => $data['agenda'],
-        //     'keywords' => $data['keywords'],
-        //     'inviteStudents' => $data['inviteStudents'],
-        //     'remotelyAccessible' => $data['remotelyAccessible'],
-        //     'status' => 0, //Desactivado aún.
-        //     'eventSubCategory_id' => null,
-        //     'eventCategory_id' => null,
-        // ]);
-
+        
 
         return redirect()->route('locationDetails.create');
     }
@@ -116,12 +108,20 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $eventsAttended = User::find(session()->get('userId'))->usertypes()->where('role_id', '1')->first()->events()->where('event_id', $event->id)->get()->first();
-        if ($eventsAttended) {
-            $registred = 1;
-        } else {
-            $registred = 0;
-        }
+        $registred = 0;
+        if (session()->get('userId')) {
+            try {
+                $eventsAttended = User::find(session()->get('userId'))->usertypes()->where('role_id', '1')->first()->events()->where('event_id', $event->id)->get()->first();
+                if ($eventsAttended) {
+                    $registred = 1;
+                } 
+            } catch (\Throwable $th) {
+                $registred = 0;
+            }
+            
+            
+        } 
+        
         return view('events.show', [
             'event' => $event,
             'registred' => $registred,

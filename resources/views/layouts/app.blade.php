@@ -10,6 +10,23 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+              $(function () {
+              $('#datetimepicker1').datetimepicker();
+              $('#datetimepicker2').datetimepicker({
+                  useCurrent: false
+              });
+              $("#datetimepicker1").on("change.datetimepicker", function (e) {
+                  $('#datetimepicker2').datetimepicker('minDate', e.date);
+              });
+              $("#datetimepicker1").on("change.datetimepicker", function (e) {
+                  $('#datetimepicker2').datetimepicker('maxDate', e.date);
+              });
+          });
+        });
+          
+      </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -24,7 +41,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    
 </head>
 <body>
     <header>    
@@ -128,17 +146,23 @@
       
       </footer>
       <!-- Footer -->
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker({
-                format: 'yyyy-mm-dd HH:mm:ss'
-            });
-        });
-        $(function () {
+    
+      <script type="text/javascript">
+      $(document).ready(function(){
+            $(function () {
+            $('#datetimepicker1').datetimepicker();
             $('#datetimepicker2').datetimepicker({
-                format: 'YYYY-MM-DD HH:mm:ss'  
+                useCurrent: false
+            });
+            $("#datetimepicker1").on("change.datetimepicker", function (e) {
+                $('#datetimepicker2').datetimepicker('minDate', e.date);
+            });
+            $("#datetimepicker1").on("change.datetimepicker", function (e) {
+                $('#datetimepicker2').datetimepicker('maxDate', e.date);
             });
         });
+      });
+        
     </script>
 </body>
 </html>

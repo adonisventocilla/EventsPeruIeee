@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ConfirmationController extends Controller
 {
@@ -16,6 +18,7 @@ class ConfirmationController extends Controller
 
     public function store(Request $request)
     {
+        
         DB::beginTransaction();
         try {
             $event = session()->get('event');
@@ -46,6 +49,8 @@ class ConfirmationController extends Controller
             $registrationPayments = session()->get('registrationPayment');
             $event->registrationPayments()->save($registrationPayments);
             $event->save();
+            $userRole = User::find(session()->get('userId'))->usertypes()->where('role_id', '2')->first();
+            $userRole->eventscreated()->attach([$event->id]);
             $registrationPayments->paymentways()->saveMany(session()->get('paymentway'));
             
         } catch (\Throwable $th) {
@@ -53,7 +58,14 @@ class ConfirmationController extends Controller
             throw $th;
         }
         DB::commit();
+        session()->forget('event');
+        session()->forget('location');
+        session()->forget('eventThemeDetail');
+        session()->forget('registrationPayment');
+        session()->forget('paymentway');
+
+        session()->flash('status', 'Task was successful!');
         
-        return view('/home');
+        return redirect('/home');
     }
 }
