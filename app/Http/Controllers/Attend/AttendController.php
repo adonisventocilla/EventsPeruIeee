@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AttendController extends Controller
@@ -28,7 +29,18 @@ class AttendController extends Controller
      */
     public function create(Event $event)
     {
-
+        
+        if ($event->registrationPayments()->first()->paymentways()->where('type_id', 1)->first()) {
+            $this->store(new Request([
+                'event' => $event
+                ]));
+        } else {
+            
+            return view('attend.payment.create', [
+                'amount' => 10.00 ,
+                ]);
+        }
+        dd('vuelve');
         return view('attend.create', [
             'event' => $event
         ]);
@@ -43,14 +55,13 @@ class AttendController extends Controller
     public function store(Request $request)
     {
         // dd($request->userId . "   asfasd  " .  $request->eventId);
-
         // $userRole = User::find($request->userId)->roles()->where('role.id', '1')->first();
-        $userRole = User::find($request->userId)->usertypes()->where('role_id', '1')->first();
+        $userRole = Auth::user()->usertypes()->where('role_id', '1')->first();
 
         DB::beginTransaction();
         try {
              $userRole->events()->attach([
-                 $request->eventId => ['paymentway_id' => $userRole->role_id]
+                 $request->event->id => ['paymentway_id' => $userRole->role_id]
                  ]);    
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -65,13 +76,21 @@ class AttendController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\attendevent  $attendevent
+     * Param La id del evento que queremos mostrar
      * @return \Illuminate\Http\Response
      */
-    public function show(attendevent $attendevent)
+    public function show($attendevent)
     {
-        //
+        $attendees = Event::find($attendevent)->usertypes()->get();
+        $persons= [];
+        $i = 0;
+        foreach ($attendees as $attendant) {
+            $persons[$i] = $attendant->users()->first()->person()->first();
+            $i++;
+        }
+        return view('attend.show', [
+            'attendees' => $persons,
+        ]);
     }
 
     /**

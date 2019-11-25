@@ -22,5 +22,6 @@ class AttendEvent extends Model
     protected $fillable = [
         'userType_id',
         'event_id',
+        'paymentway_id'
     ];
 }

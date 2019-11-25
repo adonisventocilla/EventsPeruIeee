@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model
+class Phone extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table='document';
+    protected $table='phone';
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +20,5 @@ class Document extends Model
      */
     protected $fillable = [
         'number',
-        'documentType_id',
     ];
 }

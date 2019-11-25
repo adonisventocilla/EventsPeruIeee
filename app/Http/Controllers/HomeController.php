@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
@@ -25,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $eventsCreatedByYou = User::find(session()->get('userId'))->usertypes()->where('role_id', 2)->first()->eventscreated()->get();
+        $eventsCreatedByYou = Auth::user()->usertypes()->where('role_id', 2)->first()->eventscreated()->get();
         
         return view('home', [
             'eventsCreated' => $eventsCreatedByYou,

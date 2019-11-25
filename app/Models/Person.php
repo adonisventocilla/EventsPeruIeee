@@ -26,12 +26,20 @@ class Person extends Model
         'email_verified_at',
         'status',
         'institute_id',
-        'document_id',
-        'phone_id',
     ];
 
     public function user()
     {
         return $this->hasOne('App\User', 'person_id');
+    }
+
+    public function phone()
+    {
+        return $this->hasOne('App\Models\Phone','person_id');
+    }
+
+    public function document()
+    {
+        return $this->hasOne('App\Models\Document', 'person_id');
     }
 }

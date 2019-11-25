@@ -50,4 +50,9 @@ class Event extends Model
     {
         return $this->hasOne('App\Models\RegistrationPayment', 'event_id');
     }
+
+    public function usertypes()
+    {
+        return $this->belongsToMany('App\Models\UserType', 'attendevent', 'event_id', 'userType_id');
+    }
 }

@@ -20,7 +20,7 @@ class AddColumnsEventthemedetailTable extends Migration
             $table->string('middlename')->after('firstname');
             $table->string('lastname')->after('middlename');
             $table->string('nickname')->after('lastname');
-            $table->text('url')->after('nickname');
+            $table->text('url')->after('nickname')->nullable();
         });
     }
 

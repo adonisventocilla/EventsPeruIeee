@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ route('attendances.store') }}" method="POST">
-<input type="hidden" name="eventId" value="{{ $event->id }}">
-<input type="hidden" name="userId" value="{{ session()->get('userId') }}">
   @csrf
       <!-- Marketing messaging and featurettes
       ================================================== -->
@@ -23,7 +20,7 @@
             @if ($registred)
                 ¡Ya estás registrado!
             @else
-              <button type="submit" class="btn btn-primary">Incribirse</button>
+              <a name="Inscribirse" id="Inscribirse" class="btn btn-primary" href="{{ route('attendances.create', ['events' => $event ]) }}" role="button">Incribirse</a>
             @endif
             
           </div>
@@ -39,7 +36,4 @@
         <!-- /END THE FEATURETTES -->
     
       </div><!-- /.container -->
-    
-    
-</form>    
 @endsection

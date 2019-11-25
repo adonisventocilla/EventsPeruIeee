@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsToPersonTable extends Migration
+class AddForeignKeyToDocumentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddColumnsToPersonTable extends Migration
      */
     public function up()
     {
-        Schema::table('person', function (Blueprint $table) {
-            $table->unsignedBigInteger('document_id')->index()->after('status')->nullable();
-            $table->unsignedBigInteger('phone_id')->index()->after('document_id')->nullable();
+        Schema::table('document', function (Blueprint $table) {
+            $table->foreign('person_id')->references('id')->on('person');
         });
     }
 
@@ -26,7 +25,7 @@ class AddColumnsToPersonTable extends Migration
      */
     public function down()
     {
-        Schema::table('person', function (Blueprint $table) {
+        Schema::table('document', function (Blueprint $table) {
             //
         });
     }

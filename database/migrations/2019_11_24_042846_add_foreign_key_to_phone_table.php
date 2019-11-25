@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhoneTable extends Migration
+class AddForeignKeyToPhoneTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePhoneTable extends Migration
      */
     public function up()
     {
-        Schema::create('phone', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('person_id')->index();
-            $table->char('number', 9);
-            $table->timestamps();
+        Schema::table('phone', function (Blueprint $table) {
+            $table->foreign('person_id')->references('id')->on('person');
         });
     }
 
@@ -28,6 +25,8 @@ class CreatePhoneTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phone');
+        Schema::table('phone', function (Blueprint $table) {
+            //
+        });
     }
 }

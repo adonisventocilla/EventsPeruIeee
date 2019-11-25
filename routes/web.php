@@ -23,6 +23,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('persona/{user}', 'User\UserController@createPersonData')->name('register.create');
+    Route::post('persona', 'User\UserController@storePersonData')->name('register.store');
+
     Route::resources([
         'committeeDetails' => 'Event\CommitteeDetailController',
         'eventThemeDetails' => 'Event\EventThemeDetailController',
@@ -33,12 +36,17 @@ Route::middleware(['auth'])->group(function () {
         'speakers' => 'Event\SpeakerController',
     ]);
     
+    Route::resource('attendances', 'Attend\AttendController')->except(['create', 'store']);
     
     Route::resource('events', 'Event\EventController')->except(['show']);
     
-    Route::get('attendances/{event}', 'Attend\AttendController@create')->name('attendances.create');
-    Route::resource('attendances', 'Attend\AttendController')->except(['create']);
+    Route::middleware(['person.data'])->group(function(){
+        Route::post('attendances', 'Attend\AttendController@store')->name('attendances.store');
+        Route::get('attendances/create/{event}', 'Attend\AttendController@create')->name('attendances.create');
+    });
 
+    Route::post('/payment/process', 'Attend\PaymentsController@process')->name('payment.process');
+    
     Route::get('confirmations', 'ConfirmationController@show')->name('confirmations.show');
     Route::post('confirmations', 'ConfirmationController@store')->name('confirmations.store');
 });

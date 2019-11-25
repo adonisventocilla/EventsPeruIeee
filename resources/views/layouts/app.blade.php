@@ -10,23 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-              $(function () {
-              $('#datetimepicker1').datetimepicker();
-              $('#datetimepicker2').datetimepicker({
-                  useCurrent: false
-              });
-              $("#datetimepicker1").on("change.datetimepicker", function (e) {
-                  $('#datetimepicker2').datetimepicker('minDate', e.date);
-              });
-              $("#datetimepicker1").on("change.datetimepicker", function (e) {
-                  $('#datetimepicker2').datetimepicker('maxDate', e.date);
-              });
-          });
-        });
-          
-      </script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -108,7 +92,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    
+                                    <a class="dropdown-item" href="{{ route('register.create', ['user' => Auth::user()]) }}">
+                                        Configuración
+
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -146,6 +133,8 @@
       
       </footer>
       <!-- Footer -->
+
+      @yield('script')
     
       <script type="text/javascript">
       $(document).ready(function(){
