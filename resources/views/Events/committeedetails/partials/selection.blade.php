@@ -6,14 +6,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    
-                    <div class="form-group">
-                        
-                        <form action="" method="POST">
-                            @csrf
-                            
-                        </form>
-                    </div>
+                                        
                 </div>
             </div>
         </div>

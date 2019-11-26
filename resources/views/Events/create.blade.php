@@ -39,10 +39,12 @@
                                             <div class="form-group col-md-6">
                                                     <label for="date">Fecha de inicio:</label><i class="fas fa-exclamation-circle"></i>
                                                     <div class="input-group date" id="datetimepicker1" data-target-input="nearest" aria-disabled="true">
-                                                        <input name="startTime"  type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" required/>
-                                                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                        </div>
+                                                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                                                    <input name="startTime" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                                                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                                    </div>
+                                                                </div>
                                                     </div>
                                                     @error('startTime')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -53,10 +55,12 @@
                                                 <div class="form-group col-md-6">
                                                         <label for="date">Fecha de fin:</label><i class="fas fa-exclamation-circle"></i>
                                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                                                        <input name="endTime" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" required/>
-                                                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                        </div>
+                                                            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                                                    <input name="endTime" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+                                                                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                                    </div>
+                                                                </div>
                                                     </div>
                                                     @error('endTime')
                                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -64,6 +68,8 @@
                                                 </div>
                                     </div>
                                     
+                                    
+
                                     <div class="form-group">
                                         <label for="description">Descripción:</label><i class="fas fa-exclamation-circle"></i>
                                         <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
@@ -127,5 +133,10 @@
                         </div>
                 </div></div></div></div>        
 @endsection
+
+
+{{-- @section('scripts')
+    <script src="{{ asset('js/tempusdominus/tempusdominus.js') }}" defer></script>
+@endsection --}}
      
         

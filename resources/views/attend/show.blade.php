@@ -6,6 +6,9 @@
             <div class="card">
                 <div class="card-header">Panel de control de eventos</div>
                 <div class="card-body">
+
+                    <a name="CommitteeCreate" id="CommitteeCreate" class="btn btn-primary" href="{{ route('committeeDetails.create') }}" role="button">Organizar Comites</a>
+
                     <table class="table table-inverse table-inverse table-responsive">
                         <thead class="thead-inverse">
                             <tr>

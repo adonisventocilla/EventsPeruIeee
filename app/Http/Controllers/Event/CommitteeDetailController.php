@@ -25,7 +25,7 @@ class CommitteeDetailController extends Controller
      */
     public function create()
     {
-        
+        return view('events.committeedetails.create');
     }
 
     /**

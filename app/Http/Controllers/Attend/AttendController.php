@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\User;
+use Braintree;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +36,9 @@ class AttendController extends Controller
                 'event' => $event
                 ]));
         } else {
-            
+            // $token = Braintree\Gateway([
+            //     env('BRAINTREE_ENV')
+            // ]);
             return view('attend.payment.create', [
                 'amount' => 10.00 ,
                 ]);

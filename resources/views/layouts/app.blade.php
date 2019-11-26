@@ -18,14 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Datepicker Files -->
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" />
+    <link rel="stylesheet" href="https://tempusdominus.github.io/bootstrap-4/theme/css/tempusdominus-bootstrap-4.css" />
     
 </head>
 <body>
@@ -70,7 +69,7 @@
                             @endif
                         @else
                             <small> ¡Bienvenido {{ explode(" ",Auth::user()->nickname)[0] }}!</small>
-                            @if (session()->has('role_id'))
+                            @if (Auth::user()->usertypes()->where('role_id', 2)->first())
                                 <li class="nav-item" >
                                 
                                     <a class="nav-link" href="{{ url('/home') }}"> Principal <span class="sr-only">(current)</span></a>  
@@ -79,7 +78,7 @@
                             @endif
                             
                             
-                            <img class="rounded-circle" src="{{ Auth::user()->avatar_original }} ?? " alt="" height="40px" width="40px">
+                            <img class="rounded-circle" src="{{ Auth::user()->avatar_original ?? '' }}" alt="" height="40px" width="40px">
 
                             
                             
@@ -116,14 +115,13 @@
         <main class="py-5" style="background-color: #1E8CCB;width: 100%; height: 100%;background-size:">
                 @yield('content')
         </main>
+        
 
-        {{-- <footer style="background-color: black;">
-            <h6 style="color: white">Derechos Reservados 2019 | Seccion Peru del IEEE</h6>
-        </footer> --}}
+        @yield('scripts')
         
     </div>
-<!-- Footer -->
-<footer class="page-footer font-small blue background-color:black">
+        <!-- Footer -->
+        <footer class="page-footer font-small blue background-color:black">
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">Derechos Reservados 2019© |
@@ -132,26 +130,6 @@
         <!-- Copyright -->
       
       </footer>
-      <!-- Footer -->
-
-      @yield('script')
-    
-      <script type="text/javascript">
-      $(document).ready(function(){
-            $(function () {
-            $('#datetimepicker1').datetimepicker();
-            $('#datetimepicker2').datetimepicker({
-                useCurrent: false
-            });
-            $("#datetimepicker1").on("change.datetimepicker", function (e) {
-                $('#datetimepicker2').datetimepicker('minDate', e.date);
-            });
-            $("#datetimepicker1").on("change.datetimepicker", function (e) {
-                $('#datetimepicker2').datetimepicker('maxDate', e.date);
-            });
-        });
-      });
-        
-    </script>
+      <!-- Footer --> 
 </body>
 </html>
