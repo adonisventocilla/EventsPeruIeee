@@ -30,17 +30,21 @@ class AttendController extends Controller
      */
     public function create(Event $event)
     {
-        
+
         if ($event->registrationPayments()->first()->paymentways()->where('type_id', 1)->first()) {
             $this->store(new Request([
                 'event' => $event
                 ]));
         } else {
-            // $token = Braintree\Gateway([
-            //     env('BRAINTREE_ENV')
-            // ]);
+            $token = new Braintree\Gateway([
+                'enviroment' => env('BRAINTREE_ENV'),
+                'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+                'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+                'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+            ]);
             return view('attend.payment.create', [
                 'amount' => 10.00 ,
+                'token' => $token
                 ]);
         }
         dd('vuelve');
@@ -65,7 +69,7 @@ class AttendController extends Controller
         try {
              $userRole->events()->attach([
                  $request->event->id => ['paymentway_id' => $userRole->role_id]
-                 ]);    
+                 ]);
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
