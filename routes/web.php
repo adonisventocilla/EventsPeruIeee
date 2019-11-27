@@ -36,22 +36,25 @@ Route::middleware(['auth'])->group(function () {
         'speakers' => 'Event\SpeakerController',
     ]);
 
-    Route::post('committeeDetails/createCommittee','Event\CommitteeDetailController@createCommittee')->name('committeeDetails.createCommittee');
-    
     Route::resource('attendances', 'Attend\AttendController')->except(['create', 'store']);
-    
+
     Route::resource('events', 'Event\EventController')->except(['show']);
-    
+
     Route::middleware(['person.data'])->group(function(){
         Route::post('attendances', 'Attend\AttendController@store')->name('attendances.store');
         Route::get('attendances/create/{event}', 'Attend\AttendController@create')->name('attendances.create');
     });
 
     Route::post('/payment/process', 'Attend\PaymentsController@process')->name('payment.process');
-    
+
     Route::get('confirmations', 'ConfirmationController@show')->name('confirmations.show');
     Route::post('confirmations', 'ConfirmationController@store')->name('confirmations.store');
 });
 
 
 Route::get('events/{event}', 'Event\EventController@show')->name('events.show');
+
+// Routes for admin only
+Route::get('/dashboard', 'Admin\DashboardController@index');
+Route::get('/comites', 'Admin\DashboardController@table');
+// End Routes for admin only
