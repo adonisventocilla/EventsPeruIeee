@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="min-height: 100%; background-size: cover">
 <head>
-    <meta charset="utf-8">  
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -25,10 +25,10 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" />
     <link rel="stylesheet" href="https://tempusdominus.github.io/bootstrap-4/theme/css/tempusdominus-bootstrap-4.css" />
-    
+
 </head>
 <body>
-    <header>    
+    <header>
         <div style="background-color: #00629B ">
             <table>
                     <tr>
@@ -43,7 +43,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img') }}/logoEventsIEEE.png" style="max-width: 13%;" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                     <!--{{ config('app.name', 'Laravel') }}-->
-                    
+
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -71,21 +71,26 @@
                             <small> ¡Bienvenido {{ explode(" ",Auth::user()->nickname)[0] }}!</small>
                             @if (Auth::user()->usertypes()->where('role_id', 2)->first())
                                 <li class="nav-item" >
-                                
-                                    <a class="nav-link" href="{{ url('/home') }}"> Principal <span class="sr-only">(current)</span></a>  
-                                
+
+                                    <a class="nav-link" href="{{ url('/home') }}"> Principal <span class="sr-only">(current)</span></a>
+
                                 </li>
+                                <li class="nav-item" >
+
+                                        <a class="nav-link" href="{{ url('/dashboard') }}"> Dashboard <span class="sr-only">(current)</span></a>
+
+                                    </li>
                             @endif
-                            
-                            
+
+
                             <img class="rounded-circle" src="{{ Auth::user()->avatar_original ?? '' }}" alt="" height="40px" width="40px">
 
-                            
-                            
-                            
+
+
+
                             <li class="nav-item dropdown">
-                                    
-                                
+
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -115,10 +120,10 @@
         <main class="py-5" style="background-color: #1E8CCB;width: 100%; height: 100%;background-size:">
                 @yield('content')
         </main>
-        
+
 
         @yield('scripts')
-        
+
     </div>
         <!-- Footer -->
         <footer class="page-footer font-small blue background-color:black">
@@ -128,8 +133,8 @@
           <a href=" "> Seccion Peru del IEEE</a>
         </div>
         <!-- Copyright -->
-      
+
       </footer>
-      <!-- Footer --> 
+      <!-- Footer -->
 </body>
 </html>
