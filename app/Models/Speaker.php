@@ -21,8 +21,9 @@ class Speaker extends Model
      */
     protected $fillable = [
         'event_id',
-        'person_id',
+        'user_id',
         'institute_id',
+        'speakerDetail_id'
     ];
 
 }

@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
         'registrationPayments' => 'Event\RegistrationPaymentController',
         'speakers' => 'Event\SpeakerController',
     ]);
+
+    Route::post('committeeDetails/createCommittee','Event\CommitteeDetailController@createCommittee')->name('committeeDetails.createCommittee');
     
     Route::resource('attendances', 'Attend\AttendController')->except(['create', 'store']);
     

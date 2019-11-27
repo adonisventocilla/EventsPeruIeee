@@ -88,6 +88,7 @@ class AttendController extends Controller
      */
     public function show($attendevent)
     {
+        session(['event_id' => $attendevent]);
         $attendees = Event::find($attendevent)->usertypes()->get();
         $persons= [];
         $i = 0;

@@ -105,7 +105,7 @@ class LoginController extends Controller
             $person = Person::create([
                 'firstName' => $name[0],
                 'middleName' => $name[1],
-                'lastName' => $name[2] . $name[3],
+                'lastName' => $name[2] . ' ' . $name[3],
                 'email_verified_at' => null,
                 'status' => 1,//Activo
                 'institute_id' => null,

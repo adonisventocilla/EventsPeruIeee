@@ -25,5 +25,10 @@ class CommitteeDetail extends Model
         'committeeType_id',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'committee_user','committeeDetail_id', 'user_id');
+    }
 
+    
 }

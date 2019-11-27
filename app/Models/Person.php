@@ -3,10 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Sofa\Eloquence\Eloquence;
 
 class Person extends Model
 {
     
+    use Eloquence;
+  
+    // default fields to search
+    protected $searchableColumns = ['lastName'];
+
+
     /**
      * The table associated with the model.
      *

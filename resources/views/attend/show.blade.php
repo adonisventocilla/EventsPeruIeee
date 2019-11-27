@@ -6,8 +6,14 @@
             <div class="card">
                 <div class="card-header">Panel de control de eventos</div>
                 <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
                     <a name="CommitteeCreate" id="CommitteeCreate" class="btn btn-primary" href="{{ route('committeeDetails.create') }}" role="button">Organizar Comites</a>
+                    <a name="SpeakerCreate" id="SpeakerCreate" class="btn btn-primary" href="{{ route('speakers.create') }}" role="button">Organizar Ponentes</a>
 
                     <table class="table table-inverse table-inverse table-responsive">
                         <thead class="thead-inverse">

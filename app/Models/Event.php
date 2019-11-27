@@ -36,6 +36,16 @@ class Event extends Model
         'eventCategory_id',
     ];
 
+    public function speakers()
+    {
+        return $this->hasMany('App\Models\Speaker', 'event_id');
+    }
+
+    public function committees()
+    {
+        return $this->hasMany('App\Models\CommitteeDetail', 'event_id');
+    }
+
     public function locationDetails()
     {
         return $this->hasMany('App\Models\LocationDetail');
