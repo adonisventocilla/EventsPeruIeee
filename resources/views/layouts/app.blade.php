@@ -22,9 +22,9 @@
 
     <!-- Datepicker Files -->
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" /> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" />
-    <link rel="stylesheet" href="https://tempusdominus.github.io/bootstrap-4/theme/css/tempusdominus-bootstrap-4.css" /> --}}
+    <link rel="stylesheet" href="https://tempusdominus.github.io/bootstrap-4/theme/css/tempusdominus-bootstrap-4.css" />
     
 </head>
 <body>
@@ -136,5 +136,8 @@
 
       </footer>
       <!-- Footer -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 </body>
 </html>
