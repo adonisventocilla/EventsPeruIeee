@@ -42,8 +42,6 @@ class EventThemeDetailController extends Controller
     {
         session()->forget('eventThemeDetail');
 
-        $data['url'] = 'null';
-
         $data = $request->validate([
             'theme' => 'required|max:255',
             'description' => 'required|string',
@@ -110,7 +108,31 @@ class EventThemeDetailController extends Controller
      */
     public function update(Request $request, EventThemeDetail $eventThemeDetail)
     {
-        //
+        $data = $request->validate([
+            'theme' => 'required|max:255',
+            'description' => 'required|string',
+            'prefix' => 'required|string',
+            'firstname' => 'required|string|max:40',
+            'middlename' => 'required|string|max:50',
+            'lastname' => 'required|string|max:100',
+            'nickname' => 'required|max:100',
+            'url' => '',
+        ], [
+            'firstname.string' => 'Debe ser completamente texto'
+        ]);
+
+        $eventThemeDetail->update([
+            'description' => $data['description'],
+            'theme' => $data['theme'],
+            'prefix' => $data['prefix'],
+            'firstname' => $data['firstname'],
+            'middlename' => $data['middlename'],
+            'lastname' => $data['lastname'],
+            'nickname' => $data['nickname'],
+            'url' => $data['url'],
+        ]);
+
+        return;
     }
 
     /**

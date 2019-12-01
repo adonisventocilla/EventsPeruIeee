@@ -13,15 +13,7 @@ class CreateEventthemedetailTable extends Migration
      */
     public function up()
     {
-        /**'event_id',
-        'description',
-        'theme',
-        'prefix',
-        'firstname',
-        'middlename',
-        'lastname',
-        'nickname',
-        'url', */
+        
         Schema::create('eventthemedetail', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id')->index();
