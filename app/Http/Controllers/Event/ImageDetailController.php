@@ -36,7 +36,7 @@ class ImageDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

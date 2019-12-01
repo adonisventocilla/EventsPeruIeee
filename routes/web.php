@@ -11,6 +11,8 @@
 |
 */
 
+use Symfony\Component\Routing\Route;
+
 Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
@@ -35,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
         'registrationPayments' => 'Event\RegistrationPaymentController',
         'speakers' => 'Event\SpeakerController',
     ]);
+
+    Route::post('registrationPayments/Registration/{registration}','registrationPayments@updateRegistration')->name('registrationPayments.updateRegistration');
 
     Route::resource('attendances', 'Attend\AttendController')->except(['create', 'store']);
 
