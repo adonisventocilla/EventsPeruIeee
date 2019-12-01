@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Event;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -79,7 +79,7 @@ class EventController extends Controller
         $data['header'] = $request['header'];
         $data['footer'] = $request['footer'];
         $data['agenda'] = $request['agenda'];
-        $data['status'] = 1; //Activo
+        $data['status'] = 0; //Inactivo
         $event['timeZone'] = 'pe';//Zona horaria
         $data['keywords'] = $request['keywords'];
         $data['startTime'] = Carbon::parse($request['startTime']);
@@ -109,9 +109,9 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $registred = 0;
-        if (session()->get('userId')) {
+        if (Auth::user()->id) {
             try {
-                $eventsAttended = User::find(session()->get('userId'))->usertypes()->where('role_id', '1')->first()->events()->where('event_id', $event->id)->get()->first();
+                $eventsAttended = Auth::user()->usertypes()->where('role_id', '1')->first()->events()->where('event_id', $event->id)->get()->first();
                 if ($eventsAttended) {
                     $registred = 1;
                 } 
@@ -148,7 +148,46 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|unique:event|max:255',
+            'description' => 'required',
+            'startTime' => 'required',
+            'endTime' => 'required',
+            'header',
+            'footer',
+            'agenda',
+            'timeZone',
+            'keywords',
+            'inviteStudents',
+            'remotelyAccessible',
+            'status',
+            'eventSubCategory_id',
+            'eventCategory_id',
+        ],[
+            'title.required' => 'Es necesario un título ',
+            'description.required' => 'Escribe una descripción del evento',
+            'startTime.required' => 'Escoge un tiempo de inicio',
+            'endTime.required' => 'Escoge un timepo de fin',
+        ]);
+
+        $event->update([
+            'title' => $data['title'],
+            'startTime' => $data['startTime'],
+            'endTime' => $data['endTime'],
+            'timeZone' => $data['timeZone'],
+            'description' => $data['description'],
+            'header' => $data['header'],
+            'footer' => $data['footer'],
+            'agenda' => $data['agenda'],
+            'keywords' => $data['keywords'],
+            'inviteStudents' => $data['inviteStudents'],
+            'remotelyAccessible' => $data['remotelyAccessible'],
+            'eventSubCategory_id' => $data['eventSubCategory_id'],
+            'eventCategory_id' => $data['eventCategory_id'],
+        ]);
+
+        
+            return ;
     }
 
     /**
@@ -159,6 +198,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+
+        $event->update(['status' => 0]);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -49,7 +50,7 @@ class ConfirmationController extends Controller
             $registrationPayments = session()->get('registrationPayment');
             $event->registrationPayments()->save($registrationPayments);
             $event->save();
-            $userRole = User::find(session()->get('userId'))->usertypes()->where('role_id', '2')->first();
+            $userRole = Auth::user()->usertypes()->where('role_id', '2')->first();
             $userRole->eventscreated()->attach([$event->id]);
             $registrationPayments->paymentways()->saveMany(session()->get('paymentway'));
             
@@ -64,7 +65,7 @@ class ConfirmationController extends Controller
         session()->forget('registrationPayment');
         session()->forget('paymentway');
 
-        session()->flash('status', 'Task was successful!');
+        session()->flash('status', '¡Has creado el evento satisfactoriamente!');
         
         return redirect('/home');
     }

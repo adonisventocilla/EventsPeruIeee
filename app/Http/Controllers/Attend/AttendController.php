@@ -6,7 +6,6 @@ use App\Models\AttendEvent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
-use App\User;
 use Braintree;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -47,10 +46,7 @@ class AttendController extends Controller
                 'token' => $token
                 ]);
         }
-        dd('vuelve');
-        return view('attend.create', [
-            'event' => $event
-        ]);
+        return view('welcome');
     }
 
     /**

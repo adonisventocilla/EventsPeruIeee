@@ -170,4 +170,38 @@ class RegistrationPaymentController extends Controller
     {
         //
     }
+
+    public function editRegistration(RegistrationPayment $registration)
+    {
+        # code...
+    }
+
+    public function editPayment()
+    {
+        # code...
+    }
+
+    public function updateRegistration(Request $request, RegistrationPayment $registration)
+    {
+        $data = $request->validate([
+            'startRegistration' => 'required',
+            'endRegistration' => 'required',
+            'maximun' => 'required',
+        ]);
+
+        $data['startRegistration'] = Carbon::parse($data['startRegistration']);
+        $data['endRegistration'] = Carbon::parse($data['endRegistration']);
+
+        $registration->update([
+            'startRegistration' => $data['startRegistration'],
+            'endRegistration' => $data['endRegistration'],
+            'maximun' => $data['maximun'],
+        ]);
+        return;
+    }
+
+    public function updatePayment(Request $request,PaymentWay $payment)
+    {
+        
+    }
 }

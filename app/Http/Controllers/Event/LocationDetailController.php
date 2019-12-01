@@ -43,19 +43,24 @@ class LocationDetailController extends Controller
     public function store(Request $request)
     {
         session()->forget('location');
-        
+     
+        //Requiere un trabajo mayor...
+
         $data = $request->validate([
             'addressLine1' => 'required',
             'city' => 'required',
             'roomNumber' => '',
             'building' => '',
             'url' => '',
+        ],[
+            'addressLine1.required' => 'Una dirección válida es requrerida',
+            'city.required' => 'Por favor, coloca una ciudad existente en Perú',
         ]);
             $location['building'] = 'null';
             $location['addressLine2'] = 'null';
             $location['roomNumber'] = 'null';
             $location['city'] = 'null';
-            $location['country'] = 'null';
+            $location['country'] = 'Perú';
             $location['province'] = 'null';
             $location['postalCode'] = 'null';
 
@@ -113,7 +118,24 @@ class LocationDetailController extends Controller
      */
     public function update(Request $request, LocationDetail $locationDetail)
     {
-        //
+        //Requiere más trabajo.
+        $data = $request->validate([
+            'addressLine1' => 'required',
+            'city' => 'required',
+            'roomNumber' => '',
+            'building' => '',
+            'url' => '',
+        ]);
+
+        $locationDetail->update([
+            'addressLine1' => $data['addressLine1'],
+            'city' => $data['city'],
+            'roomNumber' => $data['roomNumber'],
+            'building' => $data['building'],
+            'url' => $data['url'],
+        ]);
+
+        return ;
     }
 
     /**

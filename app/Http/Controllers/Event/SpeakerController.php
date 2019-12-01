@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Institute;
-use App\Models\Person;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
@@ -112,6 +111,7 @@ class SpeakerController extends Controller
      */
     public function destroy(Speaker $speaker)
     {
-        //
+        $speaker->forceDelete();
+        return;
     }
 }
