@@ -17,13 +17,13 @@ class CreateLocationdetailTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id')->index();
             $table->string('addressLine1',100);
-            $table->string('building',100);
-            $table->string('addressLine2',100);
-            $table->string('roomNumber',100);
-            $table->string('city',100);
-            $table->string('country',100);
-            $table->string('province',100);
-            $table->char('postalCode',5);
+            $table->string('building',100)->nullable();
+            $table->string('addressLine2',100)->nullable();
+            $table->string('roomNumber',100)->nullable();
+            $table->string('city',100)->nullable();
+            $table->string('country',100)->nullable();
+            $table->string('province',100)->nullable();
+            $table->char('postalCode',5)->nullable();
             $table->timestamps();
         });
     }
