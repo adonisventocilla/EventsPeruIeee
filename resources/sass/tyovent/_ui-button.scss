@@ -1,0 +1,168 @@
+@import "variable.scss";
+
+button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn-page {
+    .btn {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.btn {
+    box-shadow: none;
+    padding: 10px 19px;
+    &:hover,
+    &:focus,
+    &.active {
+        box-shadow: none!important;
+    }
+}
+
+.btn-rounded {
+    border-radius: 60px;
+}
+
+.btn-primary {
+    background-color: $btn-primary;
+    border-color: $btn-primary;
+    color: $white;
+
+    &:hover {
+        background-color: darken($color: $btn-primary, $amount: 10%);
+        border-color: $btn-primary;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-primary, $amount: 10%);
+        border-color: $btn-primary;
+    }
+}
+
+.btn-outline-primary {
+    border-color: $btn-primary;
+    color: $btn-primary;
+
+    &:hover {
+        background-color: $btn-primary;
+        border-color: $btn-primary;
+    }
+
+    &:active {
+        background-color: $btn-primary;
+        border-color: $btn-primary;
+    }
+}
+
+.btn-success {
+    background-color: $btn-success;
+    border-color: $btn-success;
+    color: $white;
+
+    &:hover {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+}
+
+.btn-outline-success {
+    border-color: $btn-success;
+    color: $btn-success;
+
+    &:hover {
+        background-color: $btn-success;
+        border-color: $btn-success;
+    }
+
+    &:active {
+        background-color: $btn-success;
+        border-color: $btn-success;
+    }
+}
+
+.btn-danger {
+    background-color: $btn-success;
+    border-color: $btn-success;
+    color: $white;
+
+    &:hover {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+}
+
+.btn-outline-danger {
+    border-color: $btn-danger;
+    color: $btn-danger;
+
+    &:hover {
+        background-color: $btn-danger;
+        border-color: $btn-danger;
+    }
+
+    &:active {
+        background-color: $btn-danger;
+        border-color: $btn-danger;
+    }
+}
+
+.btn-hover {
+    background-color: $btn-hover;
+    border-color: $btn-hover;
+    color: $white;
+
+    &:hover {
+        background-color: darken($color: $btn-hover, $amount: 10%);
+        border-color: $btn-hover;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-hover, $amount: 10%);
+        border-color: $btn-hover;
+    }
+}
+
+.btn-outline-hover {
+    border-color: $btn-hover;
+    color: $btn-hover;
+    background-color: transparent;
+
+    &:hover {
+        background-color: $btn-hover;
+        border-color: $btn-hover;
+        color: $white;
+    }
+
+    &:active {
+        background-color: $btn-hover;
+        border-color: $btn-hover;
+        color: $white;
+    }
+}
+
+.btn-flat {
+    border-radius: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .btn {
+        padding: 10px 15px;
+    }
+}

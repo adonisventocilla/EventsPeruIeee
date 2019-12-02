@@ -1,0 +1,36 @@
+@import "variable.scss";
+
+.default-tab {
+    .nav-tabs {
+        .nav-item {
+            .nav-link {
+                border: 0px;
+                color: $black;
+                padding: 10px 50px;
+                border-radius: 0px;
+                &.active {
+                    background: $primary;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+.custom-tab {
+    .nav-tabs {
+        .nav-item {
+            .nav-link {
+                border: 0px;
+                color: $black;
+                padding: 10px 50px;
+                border-radius: 0px;
+                // border-bottom: 1px solid $border;
+                &.active {
+                    border-bottom: 4px solid $danger;
+                    color: $black;
+                }
+            }
+        }
+    }
+}

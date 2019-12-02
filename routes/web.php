@@ -11,15 +11,14 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index')->name('index');
 
 Auth::routes();
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -27,13 +26,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('persona', 'User\UserController@storePersonData')->name('register.store');
 
     Route::resources([
-        'committeeDetails' => 'Event\CommitteeDetailController',
-        'eventThemeDetails' => 'Event\EventThemeDetailController',
-        'hostDetails' => 'Event\HostDetailController',
-        'imageDetails' => 'Event\ImageDetailController',
-        'locationDetails' => 'Event\LocationDetailController',
+        'committeeDetails'     => 'Event\CommitteeDetailController',
+        'eventThemeDetails'    => 'Event\EventThemeDetailController',
+        'hostDetails'          => 'Event\HostDetailController',
+        'imageDetails'         => 'Event\ImageDetailController',
+        'locationDetails'      => 'Event\LocationDetailController',
         'registrationPayments' => 'Event\RegistrationPaymentController',
-        'speakers' => 'Event\SpeakerController',
+        'speakers'             => 'Event\SpeakerController',
     ]);
 
     Route::post('registrationPayments/Registration/{registration}','registrationPayments@updateRegistration')->name('registrationPayments.updateRegistration');

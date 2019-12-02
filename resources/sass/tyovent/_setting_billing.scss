@@ -1,0 +1,34 @@
+@import "variable.scss";
+
+.setting-billing{
+    .list-group-item{
+        border-radius:0;
+        padding: 30px;
+        .form-group {
+            select,
+            input{
+                font-size: 12px;
+                font-weight: 500;
+            }
+            label{
+                margin-top: 10px;
+                color: #18212c;
+                font-weight: 600;
+            }
+
+        }
+        .btn-secondary {
+            color: #18212c;
+            background-color: #e1e1e1;
+            border-color: #e1e1e1;
+            font-weight: bold;
+            font-size: 12px;
+            &:hover{
+                color: #fff;
+                background-color: #5a6268;
+                border-color: #545b62;
+            }
+        }
+    }
+
+}

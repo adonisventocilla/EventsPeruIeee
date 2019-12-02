@@ -1,0 +1,43 @@
+@import "variable.scss";
+
+.setting-personal{
+    .list-group-item{
+        border-radius:0;
+        padding: 20px 30px;
+        .form-group {
+            margin-bottom: 0;
+            select,
+            input{
+                font-size: 12px;
+                font-weight: 500;
+            }
+            label{
+                margin-top: 10px;
+                color: #18212c;
+                font-weight: 600;
+            }
+            select{
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.175);
+            }
+            .b-r-0{
+                border-right: 0px;
+            }
+        }
+        .btn-secondary {
+            color: #18212c;
+            background-color: #e1e1e1;
+            border-color: #e1e1e1;
+            font-weight: bold;
+            font-size: 12px;
+            &:hover{
+                color: #fff;
+                background-color: #5a6268;
+                border-color: #545b62;
+            }
+        }
+        .input-group-text{
+            background: transparent;
+        }
+    }
+
+}

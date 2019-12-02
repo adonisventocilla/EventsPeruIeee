@@ -1,0 +1,321 @@
+@import "variable.scss";
+
+.menu {
+    background: #18212c;
+}
+
+.topbar-nav {
+    background: #18212C;
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        background: #18212C;
+    }
+    .metismenu {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        >li {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 0%;
+            flex: 1 1 0%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            position: relative;
+            a {
+                position: relative;
+                display: block;
+                font-size: 14px;
+                padding: 27px 0px;
+                color: #fff;
+                outline-width: 0;
+                transition: all 0.3s ease-out;
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 700;
+                &:hover,
+                &:focus,
+                &:active {
+                    color: #f8f9fa;
+                    text-decoration: none;
+                    background: #18212c;
+                }
+                span {
+                    display: block;
+                    margin-bottom: 10px;
+                    font-size: 18px;
+                }
+            }
+            ul {
+                background: darken(#000, 15%);
+                li {
+                    a {
+                        padding: 15px 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .topbar-nav {
+        .metismenu {
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            >li {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                >ul {
+                    position: absolute;
+                    top: 100%;
+                    min-width: 100%;
+                    z-index: 1001;
+                }
+            }
+        }
+        &.is-hoverable .metismenu>li {
+            >ul {
+                height: auto !important;
+            }
+            &:hover> {
+                ul {
+                    display: block;
+                }
+                a.has-arrow:after {
+                    -webkit-transform: rotate(-135deg);
+                    transform: rotate(-135deg);
+                }
+            }
+        }
+    }
+}
+
+.metismenu .has-arrow:after {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.nav-control {
+    i {
+        display: none;
+        font-size: 22px;
+        position: relative;
+        top: 5px;
+        left: 15px;
+    }
+}
+
+
+/*  6 - media screen and (max-width: 991px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .nav-control {
+        i {
+            display: inline-block;
+        }
+    }
+    .menu {
+        display: none;
+        padding: 30px 0px;
+    }
+    .topbar-nav {
+        .metismenu {
+            >li {
+                a {
+                    padding: 7px 0px;
+                    text-align: left;
+                    span {
+                        display: inline-block;
+                        margin-right: 7px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            li {
+                ul {
+                    li {
+                        a {
+                            margin-left: 27px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*  7 - media screen and (max-width: 767px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 680px) and (max-width: 767px) {
+    .nav-control {
+        i {
+            display: inline-block;
+        }
+    }
+    .menu {
+        display: none;
+        padding: 30px 0px;
+    }
+    .topbar-nav {
+        .metismenu {
+            >li {
+                a {
+                    padding: 7px 0px;
+                    text-align: left;
+                    span {
+                        display: inline-block;
+                        margin-right: 7px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            li {
+                ul {
+                    li {
+                        a {
+                            margin-left: 27px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*  8 - media screen and (max-width: 680px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 480px) and (max-width: 679px) {
+    .nav-control {
+        i {
+            display: inline-block;
+        }
+    }
+    .menu {
+        display: none;
+        padding: 30px 0px;
+    }
+    .topbar-nav {
+        .metismenu {
+            >li {
+                a {
+                    padding: 7px 0px;
+                    text-align: left;
+                    span {
+                        display: inline-block;
+                        margin-right: 7px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            li {
+                ul {
+                    li {
+                        a {
+                            margin-left: 27px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*  9 - media screen and (max-width: 480px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 360px) and (max-width: 479px) {
+    .nav-control {
+        i {
+            display: inline-block;
+        }
+    }
+    .menu {
+        display: none;
+        padding: 30px 0px;
+    }
+    .topbar-nav {
+        .metismenu {
+            >li {
+                a {
+                    padding: 7px 0px;
+                    text-align: left;
+                    span {
+                        display: inline-block;
+                        margin-right: 7px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            li {
+                ul {
+                    li {
+                        a {
+                            margin-left: 27px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*  10 - media screen and (max-width: 320px)
+---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 359px) {
+    .nav-control {
+        i {
+            display: inline-block;
+        }
+    }
+    .menu {
+        display: none;
+        padding: 30px 0px;
+    }
+    .topbar-nav {
+        .metismenu {
+            >li {
+                a {
+                    padding: 7px 0px;
+                    text-align: left;
+                    span {
+                        display: inline-block;
+                        margin-right: 7px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            li {
+                ul {
+                    li {
+                        a {
+                            margin-left: 27px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

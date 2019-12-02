@@ -1,0 +1,45 @@
+@import "variable.scss";
+
+.login-bg{
+    background: rgba(50, 58, 68, .7);
+}
+
+    .event-login{
+
+        .btn {
+            font-size: 12px;
+            max-width: 210px;
+            padding: 10px;
+        }
+
+
+        .btn-twitter {
+            background: #1da1f2;
+            border-color: #1da1f2;
+            &:hover,
+            &:focus{
+                background: #0c85d0;
+                border-color: #0c85d0
+            }
+        }
+
+        .btn-facebook {
+            background: #3b5998;
+            border-color: #3b5998;
+            &:hover,
+            &:focus{
+                background: #2d4373;
+                border-color: #2d4373
+            }
+        }
+        .btn-google {
+            background: #db4439;
+            border-color: #db4439;
+            &:hover,
+            &:focus{
+                background: #be2d23;
+                border-color: #be2d23
+            }
+        }
+
+    }

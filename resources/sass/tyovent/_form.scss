@@ -1,0 +1,77 @@
+@import "variable.scss";
+
+.input-flat {
+    border-radius: 0px;
+}
+
+.input-radius {
+    border-radius: 30px;
+}
+
+.form-control {
+    height: 50px;
+    border: 1px solid $border;
+    transition: all 0.4s ease-in-out;
+    &:hover,
+    &:focus,
+    .active {
+        box-shadow: none!important;
+        border: 1px solid #e53632;
+    }
+}
+
+input.focus {
+    border-color: $primary;
+}
+
+input[type="radio"].custom-control-input:checked ~ label.custom-control-label {
+    &:before {
+        background-color: $primary;
+    }
+
+    &:after {
+        content: "\f00c";
+        background-image: none;
+        font-family: fontAwesome;
+        color: $white;
+        position: absolute;
+        top: 3px;
+        left: 2px;
+        font-size: 12px;
+        font-weight: 300;
+    }
+}
+
+input[type="checkbox"].custom-control-input:checked ~ label.custom-control-label {
+    &:before {
+        background-color: $primary;
+    }
+
+    &:after {
+        content: "\f00c";
+        background-image: none;
+        font-family: fontAwesome;
+        color: $white;
+        position: absolute;
+        top: 5px;
+        left: 3px;
+        font-size: 11px;
+        font-weight: 300;
+    }
+}
+
+.custom-control-input:focus~.custom-control-label::before {
+    box-shadow: none;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label.error::after {
+    background-image: none;
+    content: "\f00d";
+    color: $white;
+    font-family: fontAwesome;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 12px;
+    font-weight: 300;
+}

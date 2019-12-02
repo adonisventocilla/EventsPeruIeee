@@ -1,0 +1,36 @@
+@import "variable.scss";
+
+.event-modal.event-profile{
+    .modal-dialog {
+        max-width: 100%;
+    }
+
+    .modal-right {
+        .media-body{
+            p {
+                color: #000;
+                margin-bottom: 0;
+                font-size: 14px!important;
+                font-weight: 500!important;
+            }
+            .denger{
+                color: #e53632;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .personal-profile {
+        flex-wrap: wrap;
+    }
+
+    .media-body {
+        flex-basis: 65%;
+    }
+
+    button {
+        margin-top: 15px;
+    }
+}

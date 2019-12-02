@@ -1,0 +1,64 @@
+@import "variable.scss";
+
+.event-draft-table {
+    color: #18212c;
+    font-size: 14px;
+    .name {
+        font-weight: bold;
+    }
+    .evemt-name {
+        font-weight: 600;
+        span {
+            color: #e53632;
+        }
+    }
+    .date {
+        color: #847577
+    }
+    table {
+        td {
+            border-top: 0px;
+            background: #f9f9f9;
+            padding: 25px 20px;
+        }
+        tr {
+            border-top: 30px solid #fff;
+        }
+    }
+}
+
+.upcoming-events {
+    .table {
+        margin-bottom: 0px;
+    }
+    tr {
+        border-radius: 15px;
+        border-bottom: 15px solid #fff;
+        // display: inline-block;
+        td {
+            padding: 7px;
+            border: 0px;
+            background: #F9F9F9;
+            vertical-align: middle;
+            img {
+                max-width: 30px;
+            }
+            a {
+                display: block;
+                color: #e53632;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.custom-dropdown {
+    padding: 0 5px;
+    cursor: pointer;
+    .dropdown-menu {
+        min-width: 7rem;
+    }
+    a {
+        font-size: 12px;
+    }
+}

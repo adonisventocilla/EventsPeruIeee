@@ -1,0 +1,151 @@
+@import "variable.scss";
+
+.header {
+    // padding: 15px 0px;
+    .logo {
+        padding: 30px 0px;
+        display: inline-block;
+    }
+}
+
+.dropdown-menu.dropdown-menu-right {
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: 0 1px 5px rgba($color: $black, $alpha: .2);
+    a {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+.header-search {
+    position: relative;
+    background: #f9f9f9;
+    padding: 17px 30px;
+    // margin: -15px 0px;
+    i {
+        position: absolute;
+        left: 30px;
+        top: 36px;
+    }
+    .form-group {
+        margin: 0px;
+    }
+    .form-control {
+        border: 0px;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 30px;
+        &:hover,
+        &:focus,
+        &.active {
+            border: 0px;
+            box-shadow: none;
+        }
+    }
+}
+
+a.create-event-btn {
+    margin-top: 17px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 15px 35px;
+    background: $primary;
+    border: 0px;
+    &:hover,
+    &:focus,
+    &.active {
+        background: darken($primary, 10%)
+    }
+}
+
+.header-user-profile {
+    padding: 15px 0px;
+    text-align: right;
+    p {
+        display: inline-block;
+        font-weight: 700;
+        margin-right: 10px;
+        text-transform: uppercase;
+        span {
+            font-weight: 500;
+        }
+    }
+}
+
+///////////////////////////////////
+//  Responsive
+//////////////////////////////////
+
+/*  6 - media screen and (max-width: 991px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .header-search {
+        padding: 5px 30px;
+        margin-top: 15px;
+        i {
+            top: 25px;
+        }
+    }
+}
+
+
+/*  7 - media screen and (max-width: 767px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .header-search {
+        margin-top: 25px;
+        padding: 0 20px;
+        i {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+    }
+}
+
+
+/*  8 - media screen and (max-width: 680px)
+---------------------------------------------------------------------- */
+
+@media (max-width: 679px) {
+    .header-search {
+        position: relative;
+        background: #f9f9f9;
+        padding: 0 20px;
+        // margin: -15px 0px;
+        i {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+    }
+}
+
+
+/*  9 - media screen and (max-width: 480px)
+---------------------------------------------------------------------- */
+
+@media (min-width: 360px) and (max-width: 479px) {
+    .header-user-profile {
+        p {
+            display: none;
+        }
+    }
+}
+
+
+/*  10 - media screen and (max-width: 320px)
+---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 359px) {
+    .header-user-profile {
+        p {
+            display: none;
+        }
+    }
+}

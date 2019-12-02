@@ -1,0 +1,59 @@
+@import "variable.scss";
+
+.peoples-letter{
+    li{
+        margin-bottom: 5px;
+        a{
+            color: #847577;
+            font-size: 14px;
+            font-weight: 600;
+            &.active{
+                font-size: 24px;
+                color: #18212c;
+                i{
+                    font-size: 18px;
+                }
+            }
+
+        }
+
+
+        i{
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.peoples-photo{
+    background: #f9f9f9;
+    padding: 5px 0;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 30px;
+    .peoples-photo-single{
+        margin: 25px 0;
+        img{
+            cursor: pointer;
+        }
+        h4{
+            color: #18212c;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+    }
+}
+
+.single-people-modal {
+
+}
+
+@media screen and (max-width:1199px){
+
+    .peoples-letter{
+        li {
+        display: inline-block;
+        margin-right: 20px;
+        }
+    }
+
+}/*max-width:1199px*/

@@ -1,13 +1,7 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-$fa-font-path: "../webfonts";
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '~@fortawesome/fontawesome-free/scss/solid.scss';
-@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import 'plugins/animate.scss';
+@import 'plugins/bootstrap.scss';
+@import 'plugins/chartist.scss';
+@import 'plugins/metisMenu.scss';
+@import 'plugins/shortcode.scss';
+@import 'tyovent/index.scss';
+@import 'custom.scss';

@@ -1,79 +1,78 @@
 @extends('layouts.app')
-@section('content')
-<div class="container" >
-<div class="form-row">
-    <div class="form-group">
-        <div class="card mb-3" style="max-width: 540px; margin-right: 35px;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                <img src="https://www.dickson-constant.com/medias/images/catalogue/api/6088-gris-680.jpg" height="100%" class="card-img" alt="...">
-                </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Eventos Próximos</h5>
-                    <p class="card-text">Esta es una tarjeta más amplia con texto de apoyo a continuación como una entrada natural a contenido adicional. Este contenido es un poco más largo.</p>
-                    <p class="card-text"><small class="text-muted">Última actualización hace 3 mins</small></p>
-                </div>
-                </div>
+
+@section('title')
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Eventos disponibles</h1>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        @if ($eventsAttended)
-        <div class="form-group">
-            <h2>Eventos Registrados</h2>
-            <div class="card-deck">
-                @foreach ($eventsAttended as $eventAttended)
-                    
-                        <div class="card border-light mb-3" style="max-width: 15rem; margin-left: 5px; margin-right: 5px;">
-                            <img src="https://www.dickson-constant.com/medias/images/catalogue/api/6088-gris-680.jpg" height="100px" width="10px" class="card-img-top" alt="{{ $eventAttended->title }} image">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $eventAttended->title }}</h5>
-                                <p class="card-text">{{ $eventAttended->description }}</p>
-                                <a href="{{ route('events.show', ['event' =>  $eventAttended ])  }}" class="btn btn-primary">Ver más</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Inicia en {{ $eventAttended->startTime }}</small>
-                            </div>
-                        </div>
-                    
-                @endforeach
-            </div>
-        </div>
-        @endif
-        <div class="form-group">
-            <h2>Eventos Disponibles</h2>
-            <div class="card-deck">
-                @foreach ($events as $event)
-                
-                            
-                                <div class="card mb-3" style="max-width: 15rem;margin-left: 5px; margin-right: 5px;">
-                                    <img src="https://www.dickson-constant.com/medias/images/catalogue/api/6088-gris-680.jpg" height="100px" width="10px" class="card-img-top" alt="{{ $event->title }} image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $event->title }}</h5>
-                                        <p class="card-text">{{ $event->description }}</p>
-                                        <a href="{{ route('events.show', ['event' =>  $event ])  }}" class="btn btn-primary">Ver más</a>
-                                        
+</div>
+@endsection
+
+@section('content')
+
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-xl-12">
+                <div class="row">
+                	@foreach ($events as $event)
+	                    <div class="col-lg-4">
+	                    	<div class="card event-card">
+                                <div class="event-card-img">
+                                    <img class="img-fluid" src="{{ asset('assets/images/events/event-main.jpg') }}" alt="placeholder image"  data-toggle="modal" data-target="#evemt-view">
+                                    <h4>{{ $event->title }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-auto">
+                                            <h5>Descripción</h5>
+                                            <p>{{ $event->description }}</p>
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">Inicia en {{ $event->startTime }}</small>
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <h5>Inicia</h5>
+                                            <p>{{ format_date($event->startTime, 'd/m/Y H:i:s') }}</p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <h5>Finaliza</h5>
+                                            <p>{{ format_date($event->endTime, 'd/m/Y H:i:s')}}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            
-                
-                @endforeach
+                                <div class="card-sponsor">
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto">
+                                            <h4>Sponsor by</h4>
+                                            <div class="card-sponsor-img">
+                                                <a href="#">
+                                                    <img class="img-fluid" src="{{ asset('assets/images/events/card-foot1.png') }}" alt="placeholder image">
+                                                </a>
+                                                <a href="#">
+                                                    <img class="img-fluid" src="{{ asset('assets/images/events/card-foot2.png') }}" alt="placeholder image">
+                                                </a>
+                                                <a href="#">
+                                                    <img class="img-fluid" src="{{ asset('assets/images/events/card-foot3.png') }}" alt="placeholder image">
+                                                </a>
+                                                <a href="#">
+                                                    <img class="img-fluid" src="{{ asset('assets/images/events/card-foot4.png') }}" alt="placeholder image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <p>Free</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+	                    </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
-</div>
-                                
 
-                    
-                        
-                        
-                 
-        
-            
-            
-</div>
 @endsection
