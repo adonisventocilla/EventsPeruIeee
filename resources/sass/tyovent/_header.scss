@@ -1,6 +1,7 @@
 @import "variable.scss";
 
 .header {
+    border-bottom: 2px solid #eee;
     // padding: 15px 0px;
     .logo {
         padding: 30px 0px;
@@ -22,7 +23,7 @@
 .header-search {
     position: relative;
     background: #f9f9f9;
-    padding: 17px 30px;
+    padding: 25px 30px;
     // margin: -15px 0px;
     i {
         position: absolute;
@@ -47,13 +48,13 @@
 }
 
 a.create-event-btn {
-    margin-top: 17px;
+    margin-top: 22px;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 15px 35px;
-    background: $primary;
-    border: 0px;
+    padding: 10px 30px;
+    //background: $primary;
+    //border: 0px;
     &:hover,
     &:focus,
     &.active {

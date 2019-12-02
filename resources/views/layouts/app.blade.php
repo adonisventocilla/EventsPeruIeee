@@ -15,7 +15,9 @@
 
     @include('layouts.sections.header')
 
-    @include('layouts.sections.menu')
+    @auth
+        @include('layouts.sections.menu')
+    @endauth
 
     @yield('title')
 

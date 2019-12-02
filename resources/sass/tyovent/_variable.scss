@@ -1,7 +1,7 @@
 // Font Variable
 $pf: 'Montserrat', sans-serif;
 // Color Variable
-$primary   : #e53632;
+$primary   : rgb(0,100,155);
 $secondary : #978DED;
 $success   : #71C565;
 $info      : #F5A3E3;
@@ -11,9 +11,9 @@ $dark      : #6a707e;
 $light     : #f8f9fa;
 $muted     : #abafb3;
 
-$btn-primary : #E1E1E1;
-$btn-success : #C92925;
-$btn-danger  : #18212C;
+$btn-primary : $primary;
+$btn-success : $success;
+$btn-danger  : $danger;
 $btn-hover   : #B9B9B9;
 ///////////////
 // Solid Color

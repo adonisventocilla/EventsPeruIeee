@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -60,7 +60,7 @@ class EventController extends Controller
             'endTime.required' => 'Escoge un timepo de fin',
 
         ]);
-        
+
         if (isset($request['inviteStudents'])) {
             $data['inviteStudents'] = 1;
         }else {
@@ -72,8 +72,8 @@ class EventController extends Controller
         } else {
             $data['remotelyAccessible'] = 0;
         }
-        
-        
+
+
         $data['timeZone'] = $request['timeZone'];
         $data['description'] = $request['description'];
         $data['header'] = $request['header'];
@@ -94,7 +94,7 @@ class EventController extends Controller
             $event->fill($data);
             $request->session()->put('event', $event);
         }
-        
+
 
         return redirect()->route('locationDetails.create');
     }
@@ -109,21 +109,29 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $registred = 0;
-        if (Auth::user()->id) {
+
+        if (Auth::check() AND Auth::user()->id) {
+
             try {
-                $eventsAttended = Auth::user()->usertypes()->where('role_id', '1')->first()->events()->where('event_id', $event->id)->get()->first();
+                $eventsAttended = Auth::user()->usertypes()
+                                            ->where('role_id', '1')
+                                            ->first()
+                                            ->events()
+                                            ->where('event_id', $event->id)
+                                            ->get()
+                                            ->first();
                 if ($eventsAttended) {
+
                     $registred = 1;
-                } 
+                }
             } catch (\Throwable $th) {
+
                 $registred = 0;
             }
-            
-            
-        } 
-        
+        }
+
         return view('events.show', [
-            'event' => $event,
+            'event'     => $event,
             'registred' => $registred,
         ]);
     }
@@ -186,7 +194,7 @@ class EventController extends Controller
             'eventCategory_id' => $data['eventCategory_id'],
         ]);
 
-        
+
             return ;
     }
 

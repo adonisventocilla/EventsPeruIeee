@@ -1,16 +1,16 @@
 @import "variable.scss";
 
 .menu {
-    background: #18212c;
+    background: rgb(54,60,68);
 }
 
 .topbar-nav {
-    background: #18212C;
+    background: rgb(54,60,68);
     ul {
         padding: 0;
         margin: 0;
         list-style: none;
-        background: #18212C;
+        background: rgb(54,60,68);
     }
     .metismenu {
         display: -webkit-box;
@@ -48,7 +48,7 @@
                 &:active {
                     color: #f8f9fa;
                     text-decoration: none;
-                    background: #18212c;
+                    background: rgb(54,60,68);
                 }
                 span {
                     display: block;

@@ -18,7 +18,8 @@ button {
 
 .btn {
     box-shadow: none;
-    padding: 10px 19px;
+    font-size: 14px;
+    //padding: 10px 19px;
     &:hover,
     &:focus,
     &.active {
@@ -60,7 +61,7 @@ button {
         border-color: $btn-primary;
     }
 }
-
+/*
 .btn-success {
     background-color: $btn-success;
     border-color: $btn-success;
@@ -107,7 +108,7 @@ button {
         border-color: $btn-success;
     }
 }
-
+*/
 .btn-outline-danger {
     border-color: $btn-danger;
     color: $btn-danger;
@@ -122,7 +123,7 @@ button {
         border-color: $btn-danger;
     }
 }
-
+/*
 .btn-hover {
     background-color: $btn-hover;
     border-color: $btn-hover;
@@ -156,13 +157,13 @@ button {
         color: $white;
     }
 }
-
+*/
 .btn-flat {
     border-radius: 0;
 }
 
 @media only screen and (max-width: 768px) {
     .btn {
-        padding: 10px 15px;
+        //padding: 10px 15px;
     }
 }

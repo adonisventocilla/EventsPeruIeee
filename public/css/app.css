@@ -19031,7 +19031,6 @@ body {
   overflow-x: hidden;
   font-size: 14px;
   height: 100%;
-  font-weight: 500;
 }
 
 html {
@@ -19064,7 +19063,7 @@ a.link {
 
 a.link:focus,
 a.link:hover {
-  color: #e53632;
+  color: #00649b;
 }
 
 ul {
@@ -19105,12 +19104,12 @@ img {
 
 ::-moz-selection {
   color: #fff;
-  background-color: #C92925;
+  background-color: #71C565;
 }
 
 ::selection {
   color: #fff;
-  background-color: #C92925;
+  background-color: #71C565;
 }
 
 h1,
@@ -19196,14 +19195,21 @@ h6 {
   border: 1px solid -border;
 }
 
+.footer {
+  border-top: 2px solid #eee;
+  padding: 20px;
+}
 .footer p {
-  font-size: 12px;
+  margin-bottom: 0;
 }
 
 .color-primary {
-  color: #e53632;
+  color: #00649b;
 }
 
+.header {
+  border-bottom: 2px solid #eee;
+}
 .header .logo {
   padding: 30px 0px;
   display: inline-block;
@@ -19223,7 +19229,7 @@ h6 {
 .header-search {
   position: relative;
   background: #f9f9f9;
-  padding: 17px 30px;
+  padding: 25px 30px;
 }
 .header-search i {
   position: absolute;
@@ -19245,16 +19251,14 @@ h6 {
 }
 
 a.create-event-btn {
-  margin-top: 17px;
+  margin-top: 22px;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 15px 35px;
-  background: #e53632;
-  border: 0px;
+  padding: 10px 30px;
 }
 a.create-event-btn:hover, a.create-event-btn:focus, a.create-event-btn.active {
-  background: #ca1e1a;
+  background: #004368;
 }
 
 .header-user-profile {
@@ -19324,17 +19328,17 @@ a.create-event-btn:hover, a.create-event-btn:focus, a.create-event-btn.active {
   }
 }
 .menu {
-  background: #18212c;
+  background: #363c44;
 }
 
 .topbar-nav {
-  background: #18212C;
+  background: #363c44;
 }
 .topbar-nav ul {
   padding: 0;
   margin: 0;
   list-style: none;
-  background: #18212C;
+  background: #363c44;
 }
 .topbar-nav .metismenu {
   display: -webkit-box;
@@ -19369,7 +19373,7 @@ a.create-event-btn:hover, a.create-event-btn:focus, a.create-event-btn.active {
 .topbar-nav .metismenu > li a:hover, .topbar-nav .metismenu > li a:focus, .topbar-nav .metismenu > li a:active {
   color: #f8f9fa;
   text-decoration: none;
-  background: #18212c;
+  background: #363c44;
 }
 .topbar-nav .metismenu > li a span {
   display: block;
@@ -19551,7 +19555,7 @@ a.create-event-btn:hover, a.create-event-btn:focus, a.create-event-btn.active {
 }
 .page-title {
   padding: 15px 0px;
-  box-shadow: 0px 5px 5px #ddd;
+  border-bottom: 2px solid #eee;
 }
 .page-title h1 {
   font-size: 20px;
@@ -19575,7 +19579,7 @@ a.create-event-btn:hover, a.create-event-btn:focus, a.create-event-btn.active {
 }
 
 .form-control {
-  height: 50px;
+  font-size: 14px;
   border: 1px solid #e7e7e7;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
@@ -19587,11 +19591,11 @@ a.create-event-btn:hover, a.create-event-btn:focus, a.create-event-btn.active {
 }
 
 input.focus {
-  border-color: #e53632;
+  border-color: #00649b;
 }
 
 input[type=radio].custom-control-input:checked ~ label.custom-control-label:before {
-  background-color: #e53632;
+  background-color: #00649b;
 }
 input[type=radio].custom-control-input:checked ~ label.custom-control-label:after {
   content: "\F00C";
@@ -19606,7 +19610,7 @@ input[type=radio].custom-control-input:checked ~ label.custom-control-label:afte
 }
 
 input[type=checkbox].custom-control-input:checked ~ label.custom-control-label:before {
-  background-color: #e53632;
+  background-color: #00649b;
 }
 input[type=checkbox].custom-control-input:checked ~ label.custom-control-label:after {
   content: "\F00C";
@@ -19652,7 +19656,7 @@ button {
 
 .btn {
   box-shadow: none;
-  padding: 10px 19px;
+  font-size: 14px;
 }
 .btn:hover, .btn:focus, .btn.active {
   box-shadow: none !important;
@@ -19663,125 +19667,132 @@ button {
 }
 
 .btn-primary {
-  background-color: #E1E1E1;
-  border-color: #E1E1E1;
+  background-color: #00649b;
+  border-color: #00649b;
   color: #fff;
 }
 .btn-primary:hover {
-  background-color: #c8c8c8;
-  border-color: #E1E1E1;
+  background-color: #004368;
+  border-color: #00649b;
 }
 .btn-primary:active {
-  background-color: #c8c8c8;
-  border-color: #E1E1E1;
+  background-color: #004368;
+  border-color: #00649b;
 }
 
 .btn-outline-primary {
-  border-color: #E1E1E1;
-  color: #E1E1E1;
+  border-color: #00649b;
+  color: #00649b;
 }
 .btn-outline-primary:hover {
-  background-color: #E1E1E1;
-  border-color: #E1E1E1;
+  background-color: #00649b;
+  border-color: #00649b;
 }
 .btn-outline-primary:active {
-  background-color: #E1E1E1;
-  border-color: #E1E1E1;
+  background-color: #00649b;
+  border-color: #00649b;
 }
 
+/*
 .btn-success {
-  background-color: #C92925;
-  border-color: #C92925;
-  color: #fff;
-}
-.btn-success:hover {
-  background-color: #9e201d;
-  border-color: #C92925;
-}
-.btn-success:active {
-  background-color: #9e201d;
-  border-color: #C92925;
+    background-color: $btn-success;
+    border-color: $btn-success;
+    color: $white;
+
+    &:hover {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
 }
 
 .btn-outline-success {
-  border-color: #C92925;
-  color: #C92925;
-}
-.btn-outline-success:hover {
-  background-color: #C92925;
-  border-color: #C92925;
-}
-.btn-outline-success:active {
-  background-color: #C92925;
-  border-color: #C92925;
+    border-color: $btn-success;
+    color: $btn-success;
+
+    &:hover {
+        background-color: $btn-success;
+        border-color: $btn-success;
+    }
+
+    &:active {
+        background-color: $btn-success;
+        border-color: $btn-success;
+    }
 }
 
 .btn-danger {
-  background-color: #C92925;
-  border-color: #C92925;
-  color: #fff;
-}
-.btn-danger:hover {
-  background-color: #9e201d;
-  border-color: #C92925;
-}
-.btn-danger:active {
-  background-color: #9e201d;
-  border-color: #C92925;
-}
+    background-color: $btn-success;
+    border-color: $btn-success;
+    color: $white;
 
+    &:hover {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-success, $amount: 10%);
+        border-color: $btn-success;
+    }
+}
+*/
 .btn-outline-danger {
-  border-color: #18212C;
-  color: #18212C;
+  border-color: #ff5722;
+  color: #ff5722;
 }
 .btn-outline-danger:hover {
-  background-color: #18212C;
-  border-color: #18212C;
+  background-color: #ff5722;
+  border-color: #ff5722;
 }
 .btn-outline-danger:active {
-  background-color: #18212C;
-  border-color: #18212C;
+  background-color: #ff5722;
+  border-color: #ff5722;
 }
 
+/*
 .btn-hover {
-  background-color: #B9B9B9;
-  border-color: #B9B9B9;
-  color: #fff;
-}
-.btn-hover:hover {
-  background-color: #a0a0a0;
-  border-color: #B9B9B9;
-}
-.btn-hover:active {
-  background-color: #a0a0a0;
-  border-color: #B9B9B9;
+    background-color: $btn-hover;
+    border-color: $btn-hover;
+    color: $white;
+
+    &:hover {
+        background-color: darken($color: $btn-hover, $amount: 10%);
+        border-color: $btn-hover;
+    }
+
+    &:active {
+        background-color: darken($color: $btn-hover, $amount: 10%);
+        border-color: $btn-hover;
+    }
 }
 
 .btn-outline-hover {
-  border-color: #B9B9B9;
-  color: #B9B9B9;
-  background-color: transparent;
-}
-.btn-outline-hover:hover {
-  background-color: #B9B9B9;
-  border-color: #B9B9B9;
-  color: #fff;
-}
-.btn-outline-hover:active {
-  background-color: #B9B9B9;
-  border-color: #B9B9B9;
-  color: #fff;
-}
+    border-color: $btn-hover;
+    color: $btn-hover;
+    background-color: transparent;
 
+    &:hover {
+        background-color: $btn-hover;
+        border-color: $btn-hover;
+        color: $white;
+    }
+
+    &:active {
+        background-color: $btn-hover;
+        border-color: $btn-hover;
+        color: $white;
+    }
+}
+*/
 .btn-flat {
   border-radius: 0;
 }
 
-@media only screen and (max-width: 768px) {
-  .btn {
-    padding: 10px 15px;
-  }
-}
 .card-title {
   font-weight: 700;
   text-transform: uppercase;
@@ -19809,7 +19820,7 @@ button {
   border-radius: 0px;
 }
 .default-tab .nav-tabs .nav-item .nav-link.active {
-  background: #e53632;
+  background: #00649b;
   color: #fff;
 }
 
@@ -20846,11 +20857,11 @@ button {
 }
 
 .calendar-btn {
-  background: #e53632;
+  background: #00649b;
   border: 0px;
 }
 .calendar-btn:hover, .calendar-btn:focus, .calendar-btn.active {
-  background: #ca1e1a;
+  background: #004368;
 }
 
 .fc-view {

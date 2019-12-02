@@ -22,7 +22,9 @@
 	                    <div class="col-lg-4">
 	                    	<div class="card event-card">
                                 <div class="event-card-img">
-                                    <img class="img-fluid" src="{{ asset('assets/images/events/event-main.jpg') }}" alt="placeholder image"  data-toggle="modal" data-target="#evemt-view">
+                                    <a href="{{ route('events.show', ['event' =>  $event ]) }}">
+                                        <img class="img-fluid" src="{{ asset('assets/images/events/event-main.jpg') }}" alt="placeholder image">
+                                    </a>
                                     <h4>{{ $event->title }}</h4>
                                 </div>
                                 <div class="card-body">
