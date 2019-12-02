@@ -46,7 +46,7 @@ class AttendController extends Controller
                 'token' => $token
                 ]);
         }
-        return view('welcome');
+        return redirect()->route('index');
     }
 
     /**
@@ -74,7 +74,7 @@ class AttendController extends Controller
 
 
         // dd($userRole->events()->get()->first());
-        return redirect('/');
+        return redirect()->route('index');
     }
 
     /**
