@@ -35,7 +35,7 @@
                         <div class="dropdown">
                             <div data-toggle="dropdown">
                                 <p><span>{{ Auth::user()->nickname }}</span></p>
-                                <img src="{{ asset('assets/images/thumb/1.png') }}">
+                                <img width="50px" height="50px" src="{{ Auth::user()->avatar_original ?? asset('assets/images/thumb/1.png') }}">
                             </div>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('register.create', ['user' => Auth::user()]) }}">

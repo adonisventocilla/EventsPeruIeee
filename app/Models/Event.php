@@ -51,6 +51,11 @@ class Event extends Model
         return $this->hasMany('App\Models\LocationDetail');
     }
 
+    public function image()
+    {
+        return $this->hasOne('App\Models\ImageDetail');
+    }
+
     public function eventThemeDetails()
     {
         return $this->hasMany('App\Models\EventThemeDetail', 'event_id');
@@ -64,5 +69,10 @@ class Event extends Model
     public function usertypes()
     {
         return $this->belongsToMany('App\Models\UserType', 'attendevent', 'event_id', 'userType_id');
+    }
+
+    public function usercreator()
+    {
+        return $this->belongsToMany('App\Models\UserType', 'createevent', 'event_id', 'userType_id');
     }
 }

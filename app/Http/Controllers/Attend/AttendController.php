@@ -29,7 +29,7 @@ class AttendController extends Controller
      */
     public function create(Event $event)
     {
-
+        
         if ($event->registrationPayments()->first()->paymentways()->where('type_id', 1)->first()) {
             $this->store(new Request([
                 'event' => $event
@@ -46,6 +46,7 @@ class AttendController extends Controller
                 'token' => $token
                 ]);
         }
+        session()->flash('status', 'Algo falló');
         return redirect()->route('index');
     }
 

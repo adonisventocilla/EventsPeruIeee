@@ -37,11 +37,11 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <h5>Inicia</h5>
-                                            <p>{{ format_date($event->startTime, 'd/m/Y H:i:s') }}</p>
+                                            <p>{{ format_date($event->startTime, 'l j F') }}</p>
                                         </div>
                                         <div class="col-auto">
                                             <h5>Finaliza</h5>
-                                            <p>{{ format_date($event->endTime, 'd/m/Y H:i:s')}}</p>
+                                            <p>{{ format_date($event->endTime, 'l j F')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,12 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <p>Free</p>
+                                            @if ($event->registrationPayments()->first()->paymentways()->where('type_id', 1)->first())
+                                                <p>Gratuito</p>
+                                            @else
+                                                <p>Pago</p>
+                                            @endif
+                                            
                                         </div>
                                     </div>
                                 </div>
