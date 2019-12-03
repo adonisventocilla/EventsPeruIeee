@@ -26,10 +26,49 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $eventsCreatedByYou = Auth::user()->usertypes()->where('role_id', 2)->first()->eventscreated()->get();
+        
+        $eventsCreatedByYou = Auth::user()
+                                        ->usertypes()
+                                        ->where('role_id', 2)->first()
+                                        ->eventscreated()
+                                            ->where('status', 0)
+                                        ->get();
         
         return view('home', [
             'eventsCreated' => $eventsCreatedByYou,
+        ]);
+    }
+
+    public function activeEvents()
+    {
+        $events = Auth::user()
+                            ->usertypes()
+                            ->where('role_id',2)->first()
+                            ->eventscreated()
+                            ->where('status',1)
+                            ->get();
+
+        return view('Events.active', [
+            'events' => $events,
+        ]);
+
+    }
+
+    public function dashboard()
+    {
+        return view('Events.dashboard');
+    }
+
+    public function myevents()
+    {
+        $events = Auth::user()
+                            ->usertypes()
+                            ->where('role_id', 1)->first()
+                            ->events()
+                            ->get();
+        
+        return view('Events.my-events',[
+            'events' => $events,
         ]);
     }
 }

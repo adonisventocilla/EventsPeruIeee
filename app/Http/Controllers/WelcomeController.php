@@ -36,7 +36,7 @@ class WelcomeController extends Controller
 
         }
 
-        $events = Event::All();
+        $events = Event::where('status', 1)->get();
 
         return view('welcome',[
             'events'         => $events,

@@ -40,6 +40,13 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('attendances', 'Attend\AttendController')->except(['create', 'store']);
 
     Route::resource('events', 'Event\EventController')->except(['show']);
+    Route::put('events/publish/{event}','Event\EventController@publish')->name('events.publish');
+    Route::post('/checkout', 'attend\PaymentsController@process');
+
+    Route::get('home/active','HomeController@activeEvents')->name('events.active');
+    Route::get('home/dashboard/{event}','HomeController@dashboard')->name('events.dashboard');
+    Route::get('home/my-events/', 'HomeController@myevents')->name('events.my-events');
+
 
     Route::middleware(['person.data'])->group(function(){
         Route::post('attendances', 'Attend\AttendController@store')->name('attendances.store');

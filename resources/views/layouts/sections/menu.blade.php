@@ -4,32 +4,37 @@
             <div class="col-xl-12">
                 <nav class="topbar-nav">
                     <ul class="metismenu" id="metismenu">
-                        <li>
+                        <!--<li>
                             <a href="{{ route('index') }}">
                                 <span class="fa fa-tachometer"></span> DASHBOARD
                             </a>
-                        </li>
+                        </li>-->
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-calendar-check-o"></span> Events
                             </a>
                             <ul aria-expanded="false">
+                                @if (Auth::user()->usertypes()->where('role_id',2)->first())
                                 <li>
-                                    <a href="#">Active</a>
+                                    <a href="{{ route('events.active') }}">Activos</a>
                                 </li>
                                 <li>
-                                    <a href="#">Draft</a>
+                                    <a href="{{ route('home') }}">Borradores</a>
                                 </li>
+                                @endif
                                 <li>
-                                    <a href="#">My Event</a>
+                                    <a href="{{ route('events.my-events') }}">Mis Eventos</a>
                                 </li>
                             </ul>
                         </li>
+                        <!--
                         <li>
                             <a href="#">
                                 <span class="fa fa-users"></span> Peoples
                             </a>
                         </li>
+                    -->
+                        <!--
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-envelope"></span> Messages
@@ -48,6 +53,7 @@
                                 <span class="fa fa-calendar"></span> Calender
                             </a>
                         </li>
+                        -->
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-cog"></span> Settings

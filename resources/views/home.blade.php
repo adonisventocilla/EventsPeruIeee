@@ -1,44 +1,75 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-            <div class="card">
-                <div class="card-header">Panel de control de eventos</div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <a name="" id="" class="btn btn-primary" href="{{ route('events.create') }}" role="button">Crear nuevo evento</a>
-                    <br>
-                    @if ($eventsCreated)
-                    <div class="form-group">
-                        <h2>Eventos Registrados</h2>
-                        
-                        <div class="card-deck">
-                            @foreach ($eventsCreated as $eventCreated)
-                                
-                                    <div class="card border-light mb-3" style="max-width: 15rem; margin-left: 5px; margin-right: 5px;">
-                                        <img src="https://www.dickson-constant.com/medias/images/catalogue/api/6088-gris-680.jpg" height="100px" width="10px" class="card-img-top" alt="{{ $eventCreated->title }} image">
-                                        <div class="card-body">
-                                            <a href="{{ route('attendances.show', ['event_id' =>  $eventCreated->id ])  }}" ><h5 class="card-title">{{ $eventCreated->title }}</h5></a>
-                                            <p class="card-text">{{ $eventCreated->description }}</p>
-                                            
-                                        </div>
-                                        <div class="card-footer">
-                                            <small class="text-muted">Inicia en {{ $eventCreated->startTime }}</small>
-                                        </div>
-                                    </div>
-                                
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif
-                </div>
+@section('title')
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Borradores de eventos planificados</h1>
             </div>
+        </div>
     </div>
 </div>
+@endsection
+
+@section('content')
+<div class="container">
+        <div class="col-xl-8">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="event-draft-table">
+                            <div class="table-responsive">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                @if ($eventsCreated)
+
+                                <a name="" id="" class="btn btn-primary" href="{{ route('events.create') }}" role="button">Crear nuevo evento</a>
+
+                                <table class="table">
+                                    @foreach ($eventsCreated as $eventCreated)
+
+                                    <tr>
+                                        <td class="name">Por {{ $eventCreated->usercreator()->first()->users()->first()->person()->first()->lastName }}</td>
+                                        <td class="evemt-name">{{ $eventCreated->title }}
+                                            <span>(Borrador)</span>
+                                        </td>
+                                        <td class="date">July 12, 2018</td>
+                                        <td>
+                                            <div class="dropdown custom-dropdown">
+                                                <div data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </div>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="{{ route('events.publish', ['event' => $eventCreated]) }}" onclick="event.preventDefault();
+                                                    document.getElementById('events-publish').submit();">
+                                                    Publicar</a>
+                                                        <form id="events-publish" action="{{ route('events.publish', ['event' => $eventCreated]) }}" method="POST" style="display: none;">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $eventCreated->id }}" name="event">
+                                                            
+                                                        </form>
+                                                    <a class="dropdown-item" href="#">Editar</a>
+                                                    <a class="dropdown-item" href="#">Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                   
+
+                                </table>
+                                @else
+                                    <p>No hay borradores planificados</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 @endsection

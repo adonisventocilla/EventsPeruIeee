@@ -35,15 +35,29 @@ class AttendController extends Controller
                 'event' => $event
                 ]));
         } else {
-            $token = new Braintree\Gateway([
-                'enviroment' => env('BRAINTREE_ENV'),
+            $gateway = new Braintree\Gateway([
+                'environment' => env('BRAINTREE_ENV'),
                 'merchantId' => env('BRAINTREE_MERCHANT_ID'),
                 'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
                 'privateKey' => env('BRAINTREE_PRIVATE_KEY')
             ]);
+
+            $token = $gateway->ClientToken()->generate();
+
+            if (Auth::user()->usertypes()->where('role_id',2)->first()) {
+                $string = "Miembro del IEEE";
+                $amount = $event->registrationPayments()->first()->paymentways()->where('type_id',3)->first()->price;
+            } else {
+                $string = "Público general";
+                $amount = $event->registrationPayments()->first()->paymentways()->where('type_id',2)->first()->price;
+            }
+            
+
             return view('attend.payment.create', [
-                'amount' => 10.00 ,
-                'token' => $token
+                'amount' => $amount,
+                'string' => $string,
+                'eventId' => $event->id,
+                'token' => $token,
                 ]);
         }
         session()->flash('status', 'Algo falló');
@@ -64,9 +78,10 @@ class AttendController extends Controller
 
         DB::beginTransaction();
         try {
-             $userRole->events()->attach([
-                 $request->event->id => ['paymentway_id' => $userRole->role_id]
-                 ]);
+             $userRole->events()
+                                ->attach([
+                                    $request->event->id => ['paymentway_id' => $userRole->role_id]
+                                ]);
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
