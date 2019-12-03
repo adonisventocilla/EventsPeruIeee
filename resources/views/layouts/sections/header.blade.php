@@ -16,7 +16,7 @@
                     <form action="#">
                         <div class="form-group">
                             <i class="icofont icofont-search"></i>
-                            <input type="text" class="form-control" placeholder="Buscar">
+                            <input type="text" class="form-control" placeholder="Buscar" disabled>
                         </div>
                     </form>
                 </div>

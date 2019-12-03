@@ -59,6 +59,7 @@
                                 <span class="fa fa-cog"></span> Settings
                             </a>
                             <ul aria-expanded="false">
+                                <!--
                                 <li>
                                     <a href="#">Profile</a>
                                 </li>
@@ -71,6 +72,7 @@
                                 <li>
                                     <a href="#">Personal</a>
                                 </li>
+                                -->
                             </ul>
                         </li>
                     </ul>

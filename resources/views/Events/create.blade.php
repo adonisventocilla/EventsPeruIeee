@@ -134,9 +134,8 @@
                 </div></div></div></div>        
 @endsection
 
+@section('scripts')
 
-{{-- @section('scripts')
-    <script src="{{ asset('js/tempusdominus/tempusdominus.js') }}" defer></script>
-@endsection --}}
+@endsection
      
         

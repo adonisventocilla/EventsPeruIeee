@@ -10,7 +10,8 @@
                         
                             <form action="{{ route('registrationPayments.store') }}" method="POST">
                                 @csrf
-                                <h2 class="display-3" style="align-content: flex-end">¿Como será el evento?</h2>
+                                <h1 class="display-5" style="align-content: flex-end">Detalles del Registro del evento</h1>
+                                <br>
                                 <div class="form-row">
                                         <div class="form-group col-md-6">
                                                 

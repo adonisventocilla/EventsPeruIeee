@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container">
-        <div class="row justify-content-center">
                 <div class="card">
-                    <div class="card-header">Registra datos adicionales</div>
                     <div class="card-body">
                             <div class="container">
                                     <div class="py-5 text-center">
@@ -63,7 +61,7 @@
                                           </div>
                               
                                           <div class="mb-3">
-                                            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                                            <label for="email">Email <span class="text-muted"></span></label>
                                             <input type="email" class="form-control" id="email" placeholder="you@example.com" value="{{ $user->email }}" disabled>
                                             <div class="invalid-feedback">
                                               Please enter a valid email address for shipping updates.
@@ -105,6 +103,5 @@
                             </div>
                     </div>
                 </div>
-        </div>
 </div>
 @endsection
