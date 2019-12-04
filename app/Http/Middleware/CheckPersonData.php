@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,14 +16,11 @@ class CheckPersonData
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->roles()->where('id', 2)) {
-            return $next($request);
-        }
-        
-        if(Auth::user()->person()->first()->document()->first() == null
-        || Auth::user()->person()->first()->phone()->first() == null
+        if(!Auth::user()->person()->first()->document()->first()
+        || !Auth::user()->person()->first()->phone()->first()
         )
         {
+            session()->flash('status', 'Necesitas llenar tus datos antes');
             return redirect()->route('register.create',[
                 'user' => Auth::user()->person()->first(),
             ]);
