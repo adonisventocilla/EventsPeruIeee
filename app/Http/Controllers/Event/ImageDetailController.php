@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Event;
 use App\Models\ImageDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Event;
+use Illuminate\Support\Facades\Storage;
 
 class ImageDetailController extends Controller
 {
@@ -37,6 +39,21 @@ class ImageDetailController extends Controller
     public function store(Request $request)
     {
         
+        $path = $request->file('imagen')->store('events/'. $request->id, 'public');
+        $event = Event::find($request->id);
+
+        if ($event->image()->first()) {
+            $event->image()->first()->update([
+                'imageDir' => $path
+            ]);
+        } else {
+            $event->image()->save(
+                new ImageDetail(['imageDir' => $path]),
+            );
+        }
+        
+        
+        return redirect()->back();
     }
 
     /**

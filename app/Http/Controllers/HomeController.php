@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttendEvent;
+use App\Models\Event;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +56,16 @@ class HomeController extends Controller
 
     }
 
-    public function dashboard()
+    public function dashboard(Event $event)
     {
-        return view('Events.dashboard');
+        $relationship = $event->usertypes()->get();
+        $attendees =[];
+        $i=0;
+        foreach ($relationship as $key) {
+            $attendees[$i] = $key->users()->first();
+            $i++;
+        }
+        return view('Events.dashboard', compact('event','attendees'));
     }
 
     public function myevents()

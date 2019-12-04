@@ -2,7 +2,11 @@
         <div class="card event-card">
             <div class="event-card-img">
                 <a>
-                    <img class="img-fluid" src="{{ asset('assets/images/events/event-main.jpg') }}" alt="placeholder image">
+                    <img class="img-fluid" src="@if ($event->image()->first())
+                    {{ asset(Storage::url($event->image()->first()->imageDir))  }}
+                    @else
+                    {{ asset('assets/images/events/event-main.jpg') }}
+                    @endif" alt="placeholder image">
                 </a>
                 <h4>{{ $event->title }}</h4>
             </div>

@@ -64,6 +64,12 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'eventImage' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/events'),
+            'visibility' => 'public',
+        ],
+
     ],
 
 ];

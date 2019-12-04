@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -144,7 +145,12 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        if ($event->image()->first()) {
+            $image = Storage::url($event->image()->first()->imageDir);
+        } else {
+            $image = null;
+        }
+        return view('Events.edit', compact('event','image'));
     }
 
     /**

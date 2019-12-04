@@ -4,10 +4,12 @@
 <div class="content-body">
         <div class="container">
             <div class="row">
+            
                 <div class="col-xl-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Net Sales</h4>
+                            <h4 class="card-title">Imagen del evento</h4>
+                        <!--
                             <div class="row">
                                 <div class="col-xl-4">
                                     <h6>This Week</h6>
@@ -18,10 +20,16 @@
                                     <h4 class="color-primary">$6550.00</h4>
                                 </div>
                             </div>
-                            <div id="simple-line-chart" class="ct-chart ct-golden-section m-t-15"></div>
+                        -->
+                            <div class="event-card-img">
+                                <a>
+                                    <img class="img-fluid" src="{{ asset('assets/images/events/event-main.jpg') }}" width="570px" height="830px" alt="placeholder image">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            <!--
                 <div class="col-xl-3">
                     <div class="card">
                         <div class="card-body">
@@ -49,40 +57,14 @@
                         </div>
                     </div>
                 </div>
+            -->
                 <div class="col-xl-3">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title m-b-15">UPCOMING EVENTS</h4>
-                            <div class="upcoming-events">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tr>
-                                            <td><img src="../assets/images/thumb/1.png" alt=""></td>
-                                            <td>Event Name
-                                                <a href="#"><i class="icofont icofont-social-google-map"></i> Location</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="../assets/images/thumb/1.png" alt=""></td>
-                                            <td>Event Name
-                                                <a href="#"><i class="icofont icofont-social-google-map"></i> Location</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="../assets/images/thumb/1.png" alt=""></td>
-                                            <td>Event Name
-                                                <a href="#"><i class="icofont icofont-social-google-map"></i> Location</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="../assets/images/thumb/1.png" alt=""></td>
-                                            <td>Event Name
-                                                <a href="#"><i class="icofont icofont-social-google-map"></i> Location</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
+                            <h4 class="card-title m-b-15">Eventos en camino</h4>
+                            @include('Events.partials.dashboard.upcoming-events', [
+                                'events' => Auth::user()->usertypes()->where('role_id',2)->first()->eventscreated()->get(),
+                            ])
                         </div>
                     </div>
                 </div>
@@ -94,11 +76,14 @@
                         <div class="card-body">
                             <h4 class="card-title m-b-15">Asistentes</h4>
                             
-                                @include('Events.partials.dashboard.attendees')
+                                @include('Events.partials.dashboard.attendees',[
+                                    'attendees' => $attendees
+                                ] )
                             
                         </div>
                     </div>
                 </div>
+            <!--
                 <div class="col-xl-3">
                     <div class="card">
                         <div class="card-body">
@@ -143,10 +128,11 @@
                                     <h4 class="color-primary">$5500.00</h4>
                                 </div>
                             </div>
-                            <div id="simple-line-chart2" class="ct-chart ct-golden-section"></div>
-                        </div>
+                        <div id="simple-line-chart2" class="ct-chart ct-golden-section"></div>
                     </div>
-
+                </div>
+            -->
+            <!--
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">EMAIL COMPAIGN</h4>
@@ -164,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+            -->
                 </div>
             </div>
 

@@ -8,7 +8,11 @@
                 <div class="col-lg-8 p-r-0">
 
                     <div class="card text-white m-b-0">
-                        <img class="card-img" src="../assets/images/modal/event.jpg" alt="Card image">
+                        <img class="card-img" src="@if ($event->image()->first())
+                        {{ asset(Storage::url($event->image()->first()->imageDir))  }}
+                        @else
+                        {{ asset('assets/images/modal/event.jpg') }}
+                        @endif" alt="Card image">
                         <div class="card-img-overlay">
                             <div class="row justify-content-between">
                                 <div class="col-auto">
@@ -22,9 +26,6 @@
                                       <a class="btn btn-primary" href="{{ route('attendances.create', ['events' => $event ]) }}" >Inscribirse</a>
                                     @endif
                                 </div>
-                                
-                
-            
                             </div>
                         </div>
                     </div>
