@@ -20985,3 +20985,13 @@ button {
   top: -30px;
   position: relative;
 }
+
+.needs-validation .alert-danger {
+  background: white;
+  color: red;
+  border: 1px solid red;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
