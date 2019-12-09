@@ -28,32 +28,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         $eventsCreatedByYou = Auth::user()
-                                        ->usertypes()
-                                        ->where('role_id', 2)->first()
-                                        ->eventscreated()
-                                            ->where('status', 0)
-                                        ->get();
-        
+                                ->usertypes()
+                                ->where('role_id', 2)->first()
+                                ->eventscreated()
+                                ->where('status', 0)
+                                ->get();
+
         return view('home', [
             'eventsCreated' => $eventsCreatedByYou,
         ]);
     }
 
+    /**
+     * Block comment
+     *
+     * @return View
+     */
     public function activeEvents()
     {
         $events = Auth::user()
-                            ->usertypes()
-                            ->where('role_id',2)->first()
-                            ->eventscreated()
-                            ->where('status',1)
-                            ->get();
+                        ->usertypes()
+                        ->where('role_id',2)->first()
+                        ->eventscreated()
+                        ->where('status',1)
+                        ->get();
 
         return view('Events.active', [
             'events' => $events,
         ]);
-
     }
 
     public function dashboard(Event $event)
@@ -68,14 +72,19 @@ class HomeController extends Controller
         return view('Events.dashboard', compact('event','attendees'));
     }
 
+    /**
+     * Block comment
+     *
+     * @return View
+     */
     public function myevents()
     {
         $events = Auth::user()
-                            ->usertypes()
-                            ->where('role_id', 1)->first()
-                            ->events()
-                            ->get();
-        
+                        ->usertypes()
+                        ->where('role_id', 1)->first()
+                        ->events()
+                        ->get();
+
         return view('Events.my-events',[
             'events' => $events,
         ]);

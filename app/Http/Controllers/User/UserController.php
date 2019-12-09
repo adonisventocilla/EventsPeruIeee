@@ -9,63 +9,85 @@ use App\Models\Institute;
 use App\Models\Phone;
 use App\Repositories\Ubigeo;
 use App\User;
-
+use Auth;
 
 class UserController extends Controller
 {
 
     protected $ubigeo;
 
+    /**
+     * Block comment
+     *
+     * @return void
+     */
     public function __construct(Ubigeo $ubigeo)
     {
+
         $this->ubigeo = $ubigeo;
     }
- 
+
+    /**
+     * Block comment
+     *
+     * @return View
+     */
     public function createPersonData(User $user)
     {
-        
 
-        $ubigeo = $this->ubigeo->all();//Consigue un array de Region/Provincia/distrito (Perú)
+        //Consigue un array de Region/Provincia/distrito (Perú)
+        $ubigeo = $this->ubigeo->all();
 
-        
-        
         $user['person'] = $user->person()->first();
 
         return view('users.create',[
-            'user' => $user,
+            'user'       => $user,
             'institutes' => Institute::all(),
         ]);
     }
 
+    /**
+     * Block comment
+     *
+     * @return View
+     */
     public function storePersonData(Request $request)
     {
-        
-        
+
+        $id = Auth::id();
+
         $data = $request->validate([
-            'document' => 'required|unique:document,number|min:8|max:8',
-            'phone' => 'required|min:8|max:9',
+            'document' => 'required|unique:document,number,'.$id.',person_id|min:8|max:8',
+            'phone'    => 'required|min:8|max:9',
         ],[
             'document.required' => 'El documento de identidad es necesario',
-            'phone.required' => 'El número teléfonico es necesario',
-            'document.unique' => 'Este documente ha sido tomado',
-            'document.min' => 'El número no puede ser de menos de 8',
-            'document.max' => 'El número no puede ser de más de 8',
-
+            'phone.required'    => 'El número teléfonico es necesario',
+            'document.unique'   => 'Este documente ha sido tomado',
+            'document.min'      => 'El número no puede ser de menos de 8',
+            'document.max'      => 'El número no puede ser de más de 8',
         ]);
 
         try {
-            User::find(session()->get('userId'))->person()->first()->phone()->save(new Phone(['number' => $data['phone']]));
-            User::find(session()->get('userId'))->person()->first()->document()->save(new Document([
-                                                                                        'documentType_id' => 1,//Documento de identidad (DNI) peruano
-                                                                                        'number' => $data['document'],
-                                                                                        ]));
-        } catch (\Throwable $th) {
-            throw $th;
+
+            Auth::user()->person()->first()->phone()->save(
+                new Phone([
+                    'number' => $data['phone']
+                ])
+            );
+
+            Auth::user()->person()->first()->document()->save(
+                new Document([
+                    'documentType_id' => 1,     //Documento de identidad (DNI) peruano
+                    'number'          => $data['document'],
+                ])
+            );
+
+        } catch (\Throwable $throw) {
+
+            throw $throw;
         }
-        
 
-        return ;
-
+        return redirect()->route('register.create', ['user' => Auth::user()]);
     }
 
 }

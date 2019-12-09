@@ -11,10 +11,10 @@
                         </li>-->
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false">
-                                <span class="fa fa-calendar-check-o"></span> Events
+                                <span class="fa fa-calendar-check-o"></span> Eventos
                             </a>
                             <ul aria-expanded="false">
-                                @if (Auth::user()->usertypes()->where('role_id',2)->first())
+                                @if (Auth::user()->usertypes()->where('role_id', 2)->first())
                                 <li>
                                     <a href="{{ route('events.active') }}">Activos</a>
                                 </li>
@@ -56,7 +56,7 @@
                         -->
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false">
-                                <span class="fa fa-cog"></span> Settings
+                                <span class="fa fa-cog"></span> Configuración
                             </a>
                             <ul aria-expanded="false">
                                 <!--
