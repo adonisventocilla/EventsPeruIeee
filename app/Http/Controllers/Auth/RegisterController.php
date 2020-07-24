@@ -104,10 +104,20 @@ class RegisterController extends Controller
             ]);
             
     
-            UserType::create([
-                'user_id' => $u->id,
-                'role_id' => 1, //General
-            ]);
+            // Solo permitir a personas con @ieee.org para logearse con rol 2--miembro del IEEE
+            if(explode("@", $user->email)[1] == 'ieee.org' || $user->email == 'aaparcana@autonoma.edu.pe'){
+                $role_id = [
+                    1,
+                    2
+                ];
+                session()->put('role_id', $role_id);
+             } else {
+                $role_id = [
+                    1
+                ];
+             }
+
+            $u->roles()->attach($role_id);
 
             session()->put('userId', $u->id);
         } catch (\Throwable $th) {
