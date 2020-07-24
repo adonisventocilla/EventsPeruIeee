@@ -8,8 +8,10 @@ use App\Models\Document;
 use App\Models\Institute;
 use App\Models\Phone;
 use App\Repositories\Ubigeo;
+use App\Repositories\Reniec;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -21,9 +23,9 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct(Ubigeo $ubigeo)
+    public function __construct(Ubigeo $ubigeo, Reniec $reniec)
     {
-
+        $this->reniec = $reniec;
         $this->ubigeo = $ubigeo;
     }
 
@@ -34,11 +36,8 @@ class UserController extends Controller
      */
     public function createPersonData(User $user)
     {
-
-        //Consigue un array de Region/Provincia/distrito (Perú)
-        $ubigeo = $this->ubigeo->all();
-
-        $user['person'] = $user->person()->first();
+        $user['person'] = $user
+                                ->person()->first();
 
         return view('users.create',[
             'user'       => $user,
@@ -54,10 +53,17 @@ class UserController extends Controller
     public function storePersonData(Request $request)
     {
 
-        $id = Auth::id();
+        $id = Auth::user()
+                        ->person()
+                        ->first()
+                        ->id;
 
         $data = $request->validate([
-            'document' => 'required|unique:document,number,'.$id.',person_id|min:8|max:8',
+            'firstname' => 'required',
+            'middlename' => '',
+            'nickname' => 'required',
+            'lastname' => 'required',
+            'document' => 'required|unique:document,number,' . $id . ',person_id|min:8|max:8',
             'phone'    => 'required|min:8|max:9',
         ],[
             'document.required' => 'El documento de identidad es necesario',
@@ -67,27 +73,89 @@ class UserController extends Controller
             'document.max'      => 'El número no puede ser de más de 8',
         ]);
 
+        DB::beginTransaction();
         try {
 
-            Auth::user()->person()->first()->phone()->save(
-                new Phone([
-                    'number' => $data['phone']
-                ])
-            );
+            Auth::user()
+                        ->update([
+                'nickname' => $data['nickname']
+            ]);
 
-            Auth::user()->person()->first()->document()->save(
-                new Document([
+            Auth::user()
+                        ->person()
+                        ->update([
+                'firstName' => $data['firstname'],
+                'middleName' => $data['middlename'],
+                'lastName' => $data['lastname']
+            ]);
+
+            if (Auth::user()
+                            ->person()->first()
+                            ->phone()->first()
+                            ) {
+                    Auth::user()
+                            ->person()->first()
+                            ->phone()
+                            ->update([
+                    'number' => $data['phone']
+                ]);
+            } else {
+                Auth::user()
+                            ->person()->first()
+                            ->phone()
+                            ->save(
+                    new Phone([
+                        'number' => $data['phone']
+                    ])
+                );
+            }
+
+            if (condition) {
+                # code...
+            } else {
+                # code...
+            }
+            
+            
+            if (Auth::user()
+                            ->person()->first()
+                            ->document()->first()
+                            ) {
+                Auth::user()
+                            ->person()->first()
+                            ->document()
+                            ->update([
                     'documentType_id' => 1,     //Documento de identidad (DNI) peruano
-                    'number'          => $data['document'],
-                ])
-            );
+                    'number'          => $data['document']
+                ]);
+            } else {
+                Auth::user()
+                    ->person()->first()
+                    ->document()
+                    ->save(
+                    new Document([
+                        'documentType_id' => 1,     //Documento de identidad (DNI) peruano
+                        'number'          => $data['document']
+                    ])
+                );
+            }
+            
+
+            
+
+            
 
         } catch (\Throwable $throw) {
-
-            throw $throw;
+            DB::rollBack();
+            session()
+                    ->flash('status','¡Hubo un error!');
+            return redirect()
+                            ->back();
         }
 
-        return redirect()->route('register.create', ['user' => Auth::user()]);
+        DB::commit();
+        return redirect()
+                        ->back();
     }
 
 }

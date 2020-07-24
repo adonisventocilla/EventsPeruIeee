@@ -58,6 +58,7 @@ class CommitteeDetailController extends Controller
             'people.email' => 'Debe ser un email',
             'people.exists' => 'Ingresa un correo registrado'
         ]);
+        
         $eventId = session()->get('event_id');
 
         DB::beginTransaction();

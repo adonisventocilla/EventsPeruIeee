@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use GuzzleHttp\Client;
+use Peru\Http\ContextClient;
+use Peru\Jne\{Dni, DniParser};
+use Peru\Sunat\UserValidator;
+use Peru\Sunat\{HtmlParser, Ruc, RucParser};
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +23,18 @@ class AppServiceProvider extends ServiceProvider
             return new Client([
                 'base_uri' => 'https://api.jys.pe/ubigeos/nested.json'
             ]);
+        });
+
+        $this->app->singleton('Peru\Jne\Dni', function () {
+            return new Dni(new ContextClient(), new DniParser());
+        });
+
+        $this->app->singleton('Peru\Sunat\UserValidator', function () {
+            return new UserValidator(new ContextClient());
+        });
+
+        $this->app->singleton('Peru\Sunat\Ruc', function () {
+            return new Ruc(new ContextClient(), new RucParser(new HtmlParser()));
         });
     }
 

@@ -13,6 +13,7 @@
         "doctrine/dbal": "^2.10",
         "fabpot/goutte": "^3.2",
         "fideloper/proxy": "^4.0",
+        "giansalex/peru-consult": "^4.1",
         "guzzlehttp/guzzle": "^6.4",
         "intervention/image": "^2.5",
         "jenssegers/date": "^3.5",

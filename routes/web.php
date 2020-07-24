@@ -35,13 +35,13 @@ Route::middleware(['auth'])->group(function() {
         'speakers'             => 'Event\SpeakerController',
     ]);
 
-    Route::post('registrationPayments/Registration/{registration}','registrationPayments@updateRegistration')->name('registrationPayments.updateRegistration');
+    Route::post('registrationPayments/Registration/{registration}','Event\EegistrationPaymentController@updateRegistration')->name('registrationPayments.updateRegistration');
 
     Route::resource('attendances', 'Attend\AttendController')->except(['create', 'store']);
 
     Route::resource('events', 'Event\EventController')->except(['show']);
     Route::put('events/publish/{event}','Event\EventController@publish')->name('events.publish');
-    Route::post('/checkout', 'attend\PaymentsController@process');
+    Route::post('/checkout', 'Attend\PaymentsController@process');
 
     Route::get('home/active','HomeController@activeEvents')->name('events.active');
     Route::get('home/dashboard/{event}','HomeController@dashboard')->name('events.dashboard');

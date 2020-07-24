@@ -218,12 +218,13 @@ class EventController extends Controller
 
     public function publish(Request $request,Event $event)
     {
+        
 
-        Event::find($event)
-                        ->first()
-                        ->update([
-                            'status' => 1,
-                        ]);
+        $event
+            ->update([
+                'status' => 1,
+            ]);
+        
         return redirect()->back();
     }
     

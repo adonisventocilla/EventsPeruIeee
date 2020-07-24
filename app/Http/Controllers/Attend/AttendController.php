@@ -74,7 +74,10 @@ class AttendController extends Controller
     {
         // dd($request->userId . "   asfasd  " .  $request->eventId);
         // $userRole = User::find($request->userId)->roles()->where('role.id', '1')->first();
-        $userRole = Auth::user()->usertypes()->where('role_id', '1')->first();
+        $userRole = Auth::user()
+                                ->usertypes()
+                                ->where('role_id', '1')
+                                ->first();
 
         DB::beginTransaction();
         try {
@@ -84,13 +87,14 @@ class AttendController extends Controller
                                 ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            throw $th;
+            session()->flash('status', '¡Ocurrió un error!');
+            redirect()->back();
         }
         DB::commit();
 
 
         // dd($userRole->events()->get()->first());
-        return redirect()->route('index');
+        return redirect()->back();
     }
 
     /**
