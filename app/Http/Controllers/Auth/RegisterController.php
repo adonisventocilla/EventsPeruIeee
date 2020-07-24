@@ -105,7 +105,7 @@ class RegisterController extends Controller
             
     
             // Solo permitir a personas con @ieee.org para logearse con rol 2--miembro del IEEE
-            if(explode("@", $user->email)[1] == 'ieee.org' || $user->email == 'aaparcana@autonoma.edu.pe'){
+            if(explode("@", $u->email)[1] == 'ieee.org' || $u->email == 'aaparcana@autonoma.edu.pe'){
                 $role_id = [
                     1,
                     2
