@@ -25,8 +25,16 @@ class UserController extends Controller
      */
     public function __construct(Ubigeo $ubigeo, Reniec $reniec)
     {
-        $this->reniec = $reniec;
-        $this->ubigeo = $ubigeo;
+        try {
+            $this->reniec = $reniec;
+            $this->ubigeo = $ubigeo;
+        }
+        catch (\Throwable $throw) {
+            session()
+                    ->flash('status','¡Servicio temporalmente desactivado!');
+            return redirect()
+                            ->back();
+        }
     }
 
     /**
